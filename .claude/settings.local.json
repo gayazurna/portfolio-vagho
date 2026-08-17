@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_figma_figma__get_metadata",
+      "mcp__plugin_figma_figma__get_design_context",
+      "Bash(awk '/<frame id=\"1:13110\"/{flag=1} flag{print} /<frame id=\"1:13385\"/{exit}' metadata_full.xml)",
+      "Bash(grep -E '^  {2,4}<')",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(curl -sL -o \"/private/tmp/claude-501/-Users-gayanezurnachyan-Desktop-portfolio/10c1ee78-278b-44f7-a743-0a561f1272b7/scratchpad/nvidia_full.png\" \"https://www.figma.com/api/mcp/asset/6706d9de-b867-4c6d-9034-b7555c2df4c6.png\")",
+      "Bash(awk '/<frame id=\"1:13271\"/{flag=1} flag{print; if\\(/<\\\\/frame>/ && ++c==1\\) exit}' metadata_full.xml)",
+      "Bash(curl -sL -o hero.png \"https://www.figma.com/api/mcp/asset/dba62805-dc40-45af-b20c-b5f89bc8ceef.png\")",
+      "Bash(curl -sL -o faq-old-large.png \"https://www.figma.com/api/mcp/asset/66f1eae1-cad8-4fb8-9e71-5f19c3945125.png\")",
+      "Bash(curl -sL -o faq-old-small.png \"https://www.figma.com/api/mcp/asset/20552641-8b8e-41ff-813d-a7b1ae19f934.png\")",
+      "Bash(curl -sL -o new-solution.png \"https://www.figma.com/api/mcp/asset/b7a62ee4-d47f-424d-9e80-6ad222e867a5.png\")",
+      "Bash(curl -sL -o demo-banner-bg.png \"https://www.figma.com/api/mcp/asset/672cfbdd-b987-47be-bdd9-70475c9783e9.png\")",
+      "Bash(file *)",
+      "Bash(sips -s format jpeg -s formatOptions 80 demo-banner-bg.gif --out demo-banner-bg.jpg)",
+      "Bash(sips -Z 1400 -s format jpeg -s formatOptions 82 faq-old-large.png --out faq-old-large.jpg)",
+      "Bash(sips -Z 1400 -s format jpeg -s formatOptions 82 faq-old-small.png --out faq-old-small.jpg)",
+      "Bash(python3 -c ' *)",
+      "Bash(pkill -f \"http.server 8934\")",
+      "Bash(awk '/<frame id=\"1:1289\"/{flag=1} flag{print} /<frame id=\"1:1352\"/{exit}' metadata_full.xml)",
+      "Bash(python3 -m http.server 8791)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8791/index.html)",
+      "Bash(pkill -f \"http.server 8791\")"
+    ]
+  }
+}

@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NVIDIA GeForce NOW — Vagho Poghosyan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=Inter:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Martel", Georgia, serif;
+        background: #fff;
+        color: #0e1b29;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* ── NAV ─────────────────────────────────────── */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 80px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .nav-right {
+        display: flex;
+        gap: 40px;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .nav-right a:hover {
+        opacity: 0.6;
+      }
+
+      /* ── HERO ────────────────────────────────────── */
+      .hero-banner {
+        margin: 0 80px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .hero-banner img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* ── CASE STUDY LAYOUT ───────────────────────── */
+      .case-grid {
+        display: grid;
+        grid-template-columns: 500px 1fr;
+        column-gap: 80px;
+        padding: 64px 80px 0;
+      }
+
+      .case-side {
+        position: sticky;
+        top: 40px;
+        align-self: start;
+        height: fit-content;
+      }
+
+      .eyebrow {
+        font-size: 24px;
+        font-weight: 700;
+        color: #5a5a5a;
+        margin-bottom: 6px;
+      }
+
+      .case-title {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+
+      .process-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #474747;
+        border-bottom: 1px solid #474747;
+        padding-bottom: 2px;
+      }
+
+      .process-link:hover {
+        opacity: 0.7;
+      }
+
+      .case-content {
+        border-left: 1px solid #d8d8d8;
+        padding-left: 80px;
+      }
+
+      .case-content > * + * {
+        margin-top: 56px;
+      }
+
+      /* ── META ROW ────────────────────────────────── */
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+      }
+
+      .meta-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .meta-label {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #8a8a8a;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .meta-values {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 24px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .gfn-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        font-family: "Inter", sans-serif;
+      }
+
+      .gfn-badge .gfn-mark {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        background: #76b900;
+        color: #0e1b29;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 0.02em;
+        padding: 4px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+
+      .gfn-badge .gfn-powered {
+        font-size: 11px;
+        line-height: 1.3;
+        color: #8a8a8a;
+      }
+
+      .gfn-badge .gfn-powered strong {
+        display: block;
+        color: #474747;
+        font-weight: 700;
+      }
+
+      .intro-text {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.6;
+        color: #0e1b29;
+      }
+
+      /* ── SECTIONS ────────────────────────────────── */
+      .section-heading {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+
+      .body-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: #474747;
+        line-height: 1.7;
+      }
+
+      .body-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 20px;
+      }
+
+      .body-list li {
+        font-size: 18px;
+        font-weight: 600;
+        color: #474747;
+        line-height: 1.7;
+        padding-left: 24px;
+        position: relative;
+      }
+
+      .body-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #76b900;
+      }
+
+      .numbered-list {
+        list-style: none;
+        counter-reset: step;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        margin-top: 20px;
+      }
+
+      .numbered-list > li {
+        counter-increment: step;
+        padding-left: 36px;
+        position: relative;
+      }
+
+      .numbered-list > li::before {
+        content: counter(step) ".";
+        position: absolute;
+        left: 0;
+        font-weight: 700;
+        color: #76b900;
+      }
+
+      .numbered-list .step-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .numbered-list .body-list {
+        margin-top: 10px;
+      }
+
+      mark {
+        background: rgba(118, 185, 0, 0.2);
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+      }
+
+      .shot-pair {
+        display: flex;
+        gap: 24px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .shot-pair img {
+        border-radius: 8px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .shot-pair .shot-large {
+        flex: 0 0 55%;
+      }
+
+      .shot-pair .shot-small {
+        flex: 1;
+      }
+
+      .shot-caption {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        color: #8a8a8a;
+        margin-top: 12px;
+      }
+
+      .quote-box {
+        background: #f4f4f4;
+        border-radius: 8px;
+        padding: 28px 32px;
+      }
+
+      .quote-label {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #8a8a8a;
+        margin-bottom: 10px;
+      }
+
+      .quote-text {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.6;
+        font-style: italic;
+      }
+
+      .strategy-list {
+        list-style: none;
+        counter-reset: strategy;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .strategy-list li {
+        counter-increment: strategy;
+        font-size: 18px;
+        font-weight: 600;
+        color: #474747;
+        padding-left: 28px;
+        position: relative;
+      }
+
+      .strategy-list li::before {
+        content: counter(strategy) ".";
+        position: absolute;
+        left: 0;
+        color: #76b900;
+        font-weight: 700;
+      }
+
+      .solution-shot {
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* ── DEMO BANNER ─────────────────────────────── */
+      .demo-banner {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        height: 361px;
+        background: #0a090f;
+        display: flex;
+        align-items: center;
+        padding: 0 64px;
+      }
+
+      .demo-banner img.demo-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+      }
+
+      .demo-banner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, rgba(10, 9, 15, 0.55), rgba(10, 9, 15, 0.1));
+      }
+
+      .demo-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .demo-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .demo-buttons {
+        display: flex;
+        gap: 16px;
+      }
+
+      .demo-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 28px;
+        border: 1px solid #fff;
+        border-radius: 22px;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        transition: background 0.15s;
+      }
+
+      .demo-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .closing-text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .closing-text p {
+        font-size: 18px;
+        font-weight: 600;
+        color: #474747;
+        line-height: 1.7;
+      }
+
+      /* ── UP NEXT ─────────────────────────────────── */
+      .up-next {
+        margin: 80px 80px 0;
+        background: #0a090f;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        display: block;
+      }
+
+      .up-next-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 24px;
+        padding: 40px 64px;
+      }
+
+      .up-next-eyebrow {
+        font-family: "Martel", serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+      }
+
+      .up-next-title {
+        font-size: 40px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .up-next-title span {
+        text-transform: uppercase;
+      }
+
+      .up-next-phones {
+        display: flex;
+        gap: 12px;
+      }
+
+      .up-next-phone {
+        position: relative;
+        width: 74px;
+        height: 176px;
+        flex-shrink: 0;
+      }
+
+      .up-next-phone img.bezel {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .up-next-phone img.screen {
+        position: absolute;
+        top: 5%;
+        left: 32%;
+        width: 36%;
+        height: 90%;
+        object-fit: cover;
+        border-radius: 8px;
+        z-index: 2;
+      }
+
+      footer.site-footer {
+        padding: 40px 80px 80px;
+        text-align: center;
+      }
+
+      footer.site-footer a {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        color: #8a8a8a;
+      }
+
+      footer.site-footer a:hover {
+        opacity: 0.7;
+      }
+
+      /* ── RESPONSIVE ──────────────────────────────── */
+      @media (max-width: 1100px) {
+        .case-grid {
+          grid-template-columns: 1fr;
+          padding: 40px 24px 0;
+        }
+        .case-side {
+          position: static;
+        }
+        .case-content {
+          border-left: none;
+          padding-left: 0;
+          margin-top: 40px;
+        }
+        .hero-banner {
+          margin: 0 24px;
+        }
+        .meta-row {
+          flex-direction: column;
+          gap: 24px;
+        }
+        .shot-pair {
+          flex-direction: column;
+        }
+        .up-next {
+          margin: 60px 24px 0;
+        }
+        .up-next-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding: 32px 24px;
+        }
+        footer.site-footer {
+          padding: 40px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="logo">Vagho Poghosyan</a>
+      <div class="nav-right">
+        <a href="index.html#faq">F.A.Q</a>
+        <span>ENG</span>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero-banner">
+      <img src="assets/nvidia/hero.png" alt="NVIDIA GeForce NOW app screens" />
+    </div>
+
+    <!-- CASE STUDY -->
+    <div class="case-grid">
+      <div class="case-side">
+        <div class="eyebrow">NVIDIA</div>
+        <h1 class="case-title">GeForce NOW</h1>
+        <a href="#" class="process-link">See process in Figma Slides ↗</a>
+      </div>
+
+      <div class="case-content">
+        <div>
+          <div class="meta-row">
+            <div class="meta-col">
+              <span class="meta-label">My role</span>
+              <div class="meta-values">Senior Product Designer</div>
+            </div>
+            <div class="meta-col">
+              <span class="meta-label">Other Participants</span>
+              <div class="meta-values">
+                <span>Product Lead Designer</span>
+                <span>Product Analyst</span>
+                <span>Project Owner</span>
+              </div>
+            </div>
+            <div class="gfn-badge">
+              <span class="gfn-mark">GEFORCE NOW</span>
+              <span class="gfn-powered">Powered by<strong>GFN.AM</strong></span>
+            </div>
+          </div>
+          <p class="intro-text" style="margin-top: 28px">
+            NVIDIA GeForce NOW is a cloud gaming service that allows users to
+            stream high-quality games on various devices without needing
+            powerful local hardware. Utilizing NVIDIA's cloud servers, it
+            delivers smooth gameplay with low latency and supports games from
+            major digital stores.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="section-heading">Task</h2>
+          <p class="body-text">
+            To <mark>create a new F.A.Q section</mark> for NVIDIA GeForce NOW
+            to prevent issues with users who are having difficulty installing
+            and running games or who are unable to contact support.
+          </p>
+          <ul class="body-list">
+            <li>
+              Reduce the percentage of users who discontinue using the
+              product due to the inclusion of clear instructions on how to
+              install the game.
+            </li>
+            <li>Provide easy access to support so users can quickly resolve technical issues.</li>
+            <li>
+              Enhanced user satisfaction by making the support experience
+              more intuitive. Improved Information Architecture.
+            </li>
+            <li>
+              Create a new F.A.Q structure that logically simplifies
+              navigation and separates reference materials from technical
+              support.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="section-heading">Problems</h2>
+          <p class="body-text">
+            User Research &amp; Metrics Analysis: Key Issues Identified.
+            Based on a combination of user research and metrics analysis
+            from over 1,200 GeForce NOW users, the following challenges were
+            identified:
+          </p>
+          <ul class="body-list">
+            <li>41% of users complained that the “F.A.Q..” section did not help solve the problem.</li>
+            <li>
+              23,5% of users discontinued using the platform because there
+              were no video instructions for game launching, leaving new
+              users struggling to get started.
+            </li>
+            <li>A significant volume of complaints came from users who struggled to access support or find relevant answers.</li>
+            <li>The F.A.Q section and support pages contained outdated information, leading to longer resolution times.</li>
+            <li>
+              Outdated interfaces failed to align with users' need for quick
+              access to information, resulting in high bounce rates and low
+              user engagement.
+            </li>
+          </ul>
+
+          <div style="margin-top: 32px">
+            <div class="shot-pair">
+              <img class="shot-large" src="assets/nvidia/faq-old-large.jpg" alt="Old GeForce NOW F.A.Q section, list view" />
+              <img class="shot-small" src="assets/nvidia/faq-old-small.jpg" alt="Old GeForce NOW F.A.Q section, mobile view" />
+            </div>
+            <p class="shot-caption">The old version of the F.A.Q. section for GeForce NOW</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-heading">My approach</h2>
+          <ol class="numbered-list">
+            <li>
+              <div class="step-title">User Behavior Analysis</div>
+              <ul class="body-list">
+                <li>
+                  Used Metric to collect analytics on user interactions with
+                  the F.A.Q section, which helped identify weaknesses and
+                  key drop-off points.
+                </li>
+                <li>
+                  Applied Customer Journey Mapping (CJM) to analyze the
+                  user's journey in detail, identifying frustration points
+                  and areas that needed improvement.
+                </li>
+                <li>
+                  Based on this data-driven approach, I studied user
+                  behavior and search patterns, allowing me to accurately
+                  understand what users were looking for and structure the
+                  F.A.Q accordingly.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="step-title">Generating hypotheses and creating design concepts based on them</div>
+            </li>
+            <li>
+              <div class="step-title">Creating new variations in Figma, features, and user interfaces based on the core framework of NVIDIA</div>
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h2 class="section-heading">Hypothesis &amp; Strategy</h2>
+          <div class="quote-box">
+            <div class="quote-label">Core Hypothesis</div>
+            <p class="quote-text">
+              "A modernized support hub with context-aware search, video
+              guides, and intuitive IA will reduce churn by 35% and improve
+              resolution speed."
+            </p>
+          </div>
+          <p class="body-text" style="margin-top: 24px; font-weight: 700; color: #0e1b29;">Strategy:</p>
+          <ol class="strategy-list">
+            <li>Smart Search: Leverage user query data to prioritize results.</li>
+            <li>Dynamic Content: Video tutorials for high-priority pain points.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h2 class="section-heading">New Solution: Guides</h2>
+          <div class="solution-shot">
+            <img src="assets/nvidia/new-solution.png" alt="New GeForce NOW F.A.Q guides solution" />
+          </div>
+        </div>
+
+        <div>
+          <h2 class="section-heading">Result</h2>
+          <p class="body-text">
+            By analyzing user behavior and tracking analytics, identified
+            the most common pain points and search patterns. This
+            data-driven approach provided a clear understanding of what
+            users were looking for, allowing for an optimized user journey.
+            The old F.A.Q section was restructured into three key blocks:
+            “Smart Search,” “Guides &amp; Manuals,” and a “Popular Answers”
+            section with its own subsections. This improved content
+            navigation, enabling users to quickly find exactly what they
+            needed — whether it was technical support or usage guides.
+          </p>
+          <ol class="numbered-list">
+            <li>
+              <ul class="body-list">
+                <li><mark>Reduced the bounce rate</mark> on the support page by 43%</li>
+                <li>
+                  <mark>Increased user satisfaction by 29%</mark> (based on
+                  Voice of the Customer (VoC) survey results conducted after
+                  launch)
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="body-text">
+                Created new design variations in Figma, ensuring alignment
+                with NVIDIA's core design framework. Implemented video
+                tutorials, making step-by-step instructions easier for
+                users and reducing frustration.
+              </div>
+              <ul class="body-list">
+                <li><mark>Video guides increased user engagement by 23,8%</mark></li>
+                <li>
+                  For new users, the drop-off rate before completing
+                  registration <mark>decreased by 69%</mark> (based on a
+                  survey conducted after launch)
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="demo-banner">
+          <img class="demo-bg" src="assets/nvidia/demo-banner-bg.jpg" alt="" />
+          <div class="demo-content">
+            <div class="demo-title">NVIDIA DEMO VERSION</div>
+            <div class="demo-buttons">
+              <a href="#" class="demo-btn">View figma</a>
+              <a href="#" class="demo-btn">View behance</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="closing-text">
+          <p>
+            This project was an outsourcing collaboration, and I truly
+            enjoyed contributing to a company like NVIDIA GFN.
+          </p>
+          <p>
+            As a Product UI/UX Designer, I am committed to delivering
+            effective and high-quality design solutions. This project was
+            no exception. I am open to new professional opportunities and
+            collaborations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- UP NEXT -->
+    <a href="index.html" class="up-next">
+      <div class="up-next-grid">
+        <div>
+          <div class="up-next-eyebrow">UP NEXT</div>
+          <div class="up-next-title">Startup <span>Invest Banking</span></div>
+        </div>
+        <div class="up-next-phones">
+          <div class="up-next-phone">
+            <img class="bezel" src="assets/nvidia/phone-bezel-1.png" alt="" />
+            <img class="screen" src="assets/nvidia/phone-screen-1.png" alt="" />
+          </div>
+          <div class="up-next-phone">
+            <img class="bezel" src="assets/nvidia/phone-bezel-2.png" alt="" />
+            <img class="screen" src="assets/nvidia/phone-screen-2.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <footer class="site-footer">
+      <a href="index.html">← Back to all projects</a>
+    </footer>
+  </body>
+</html>

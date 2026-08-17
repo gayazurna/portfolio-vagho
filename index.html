@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vagho Poghosyan — Product Designer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=Inter:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Martel", Georgia, serif;
+        background: #fff;
+        color: #0e1b29;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ── NAV ─────────────────────────────────────── */
+      nav {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 40px;
+        align-items: start;
+        padding: 40px 80px 80px;
+      }
+
+      .logo {
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+
+      .nav-hero-text {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+        line-height: 1.55;
+      }
+
+      .nav-right {
+        font-family:
+          "Martina Plantijn Regular", "Martina Plantijn Regular Placeholder",
+          sans-serif;
+        position: absolute;
+        top: 40px;
+        right: 80px;
+        display: flex;
+        gap: 40px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .nav-right a:hover {
+        opacity: 0.6;
+      }
+
+      /* ── MAIN SPLIT ──────────────────────────────── */
+      .main-split {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "list image";
+        column-gap: 40px;
+        padding: 0 80px;
+        margin-top: 60px;
+      }
+
+      /* ── LEFT COLUMN ─────────────────────────────── */
+      .left-col {
+        grid-area: list;
+      }
+
+      hr.div {
+        border: none;
+        border-top: 1px solid #0e1b29;
+        margin: 0;
+      }
+
+      .project {
+        padding: 24px 0;
+        cursor: pointer;
+      }
+
+      .project-header {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .proj-num {
+        font-size: 24px;
+        font-weight: 700;
+        color: #5a5a5a;
+        min-width: 50px;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+
+      .project.active .proj-num {
+        color: var(--accent, #76b900);
+      }
+
+      .proj-name {
+        font-size: 24px;
+        font-weight: 700;
+        color: #5a5a5a;
+        transition: color 0.2s;
+      }
+
+      .project.active .proj-name {
+        color: #0e1b29;
+      }
+
+      .proj-detail {
+        display: grid;
+        grid-template-rows: 0fr;
+        margin-top: 0;
+        opacity: 0;
+        transition:
+          grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.3s ease;
+      }
+
+      .proj-detail-inner {
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      .project.active .proj-detail {
+        grid-template-rows: 1fr;
+        margin-top: 24px;
+        opacity: 1;
+        transition:
+          grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.4s ease 0.1s;
+      }
+
+      .proj-desc {
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+
+      .proj-metrics {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 36px;
+      }
+
+      .proj-metrics li {
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        line-height: 1.7;
+      }
+
+      mark {
+        background: var(--accent-mark, rgba(118, 185, 0, 0.2));
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+      }
+
+      .btn-view {
+        position: relative;
+        z-index: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 28px;
+        border: 1px solid #0e1b29;
+        border-radius: 22px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #0e1b29;
+        transition: color 0.3s ease;
+      }
+
+      .btn-view::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: #0e1b29;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.3s ease;
+      }
+
+      .btn-view:hover {
+        color: #fff;
+      }
+
+      .btn-view:hover::before {
+        transform: scaleY(1);
+      }
+
+      /* ── RIGHT COLUMN ────────────────────────────── */
+      .proj-visual {
+        grid-area: image;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        background: linear-gradient(to bottom, #0e1a29, #9da3a7);
+      }
+
+      .proj-visual > video,
+      .proj-visual > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .proj-visual > img {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        will-change: opacity;
+      }
+
+      .proj-visual > img.active {
+        opacity: 1;
+      }
+
+      .proj-overlay {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .proj-overlay.active {
+        opacity: 1;
+      }
+
+      .phones-scroll {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: phones-run 22s linear infinite;
+        will-change: transform;
+      }
+
+      .phones-scroll img {
+        display: block;
+        flex-shrink: 0;
+        margin-right: 163px;
+      }
+
+      @keyframes phones-run {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── ABOUT ───────────────────────────────────── */
+      .about-grid {
+        padding: 160px 80px 80px;
+      }
+
+      .about-grid-box {
+        display: grid;
+        border-radius: 10px;
+        grid-template-columns: 1fr 2fr;
+        background: #f7f7f7;
+        gap: 20px;
+        padding: 80px 40px;
+      }
+
+      .about-photo {
+        position: relative;
+        width: 319px;
+      }
+
+      .about-photo img {
+        width: 319px;
+        height: 478px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .collab-btn {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 1px solid #0e1b29;
+        border-radius: 80px;
+        padding: 8px 24px;
+        font-family: "Martel", serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        white-space: nowrap;
+      }
+
+      .about-content {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+      }
+
+      .about-content p {
+        font-size: 24px;
+        font-weight: 600;
+        color: #0e1b29;
+        line-height: 1.55;
+      }
+
+      /* ── FOOTER ──────────────────────────────────── */
+      footer {
+        padding: 80px 80px;
+      }
+
+      .footer-box {
+        background: #f7f7f7;
+        border-radius: 10px;
+        height: 361px;
+        position: relative;
+        overflow: hidden;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .footer-watermark {
+        font-size: 80px;
+        font-weight: 600;
+        color: rgba(14, 27, 41, 0.15);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        line-height: 1.15;
+      }
+
+      .footer-links-row {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-col a {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .footer-col a:hover {
+        opacity: 0.6;
+      }
+
+      .arrow-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .footer-bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .footer-contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+      }
+
+      .footer-contacts a {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+        text-decoration: underline;
+        letter-spacing: 0.03em;
+      }
+
+      .footer-contacts a:hover {
+        opacity: 0.6;
+      }
+
+      /* ── RESPONSIVE ──────────────────────────────── */
+      @media (max-width: 1050px) {
+        nav {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          column-gap: 24px;
+          row-gap: 16px;
+          padding: 24px 24px;
+        }
+        .logo {
+          order: 1;
+        }
+        .nav-right {
+          position: static;
+          order: 2;
+          margin-left: auto;
+        }
+        .nav-hero-text {
+          order: 3;
+          flex-basis: 100%;
+          width: 100%;
+        }
+        .main-split {
+          grid-template-columns: 1fr;
+          grid-template-areas: "list" "image";
+          padding: 0 24px;
+          row-gap: 32px;
+          margin-top: 32px;
+        }
+        .about-grid-box {
+          grid-template-columns: 1fr;
+          padding: 40px 24px 0;
+        }
+        footer {
+          padding: 40px 24px;
+        }
+      }
+
+      @media (max-width: 1400px) {
+        /* .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        } */
+        .footer-watermark {
+          font-size: 48px;
+        }
+
+        /* .footer-contacts {
+          align-items: flex-start;
+          gap: 16px;
+        } */
+      }
+      @media (max-width: 860px) {
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        }
+        .footer-watermark {
+          font-size: 28px;
+        }
+
+        .footer-contacts {
+          align-items: flex-start;
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <span class="logo">Vagho Poghosyan</span>
+      <p class="nav-hero-text">
+        Product Designer in fintech, SaaS, and digital platforms.<br />
+        I specialize in transforming complex business challenges into seamless
+        user experiences<br />
+        by applying data-driven design, UX research, and scalable design
+        systems.
+      </p>
+      <div class="nav-right">
+        <span>ARM <span id="armenia-time"></span></span>
+      </div>
+    </nav>
+
+    <!-- MAIN SPLIT -->
+    <div class="main-split">
+      <!-- LEFT: Project List -->
+      <div class="left-col">
+        <hr class="div" />
+
+        <div
+          class="project active"
+          onclick="selectProject(0)"
+          style="--accent: #76b900; --accent-mark: rgba(118, 185, 0, 0.2)"
+        >
+          <div class="project-header">
+            <span class="proj-num">01.</span>
+            <span class="proj-name">NVIDIA GeForce NOW</span>
+          </div>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="proj-desc">
+                Enhanced GeForce NOW's support system and FAQ, reducing user
+                frustration and improving self-service resolution rates.
+              </p>
+              <ul class="proj-metrics">
+                <li>
+                  Revamped support experience, leading to a
+                  <mark>43% reduction</mark> in the bounce rate on help pages,
+                  keeping more users engaged with troubleshooting content
+                </li>
+                <li>
+                  <mark>Boosted user satisfaction by 29%</mark>, as reflected in
+                  post-implementation Voice of the Customer (VoC) surveys,
+                  thanks to a more intuitive FAQ structure
+                </li>
+                <li>
+                  <mark>Implemented interactive video guides</mark>, increasing
+                  engagement by <mark>23.8%</mark>, which reduced the number of
+                  repeated support requests and accelerated new user onboarding
+                </li>
+              </ul>
+              <a href="#" class="btn-view">View project</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div" />
+
+        <div
+          class="project"
+          onclick="selectProject(1)"
+          style="--accent: #1c8ec7; --accent-mark: rgba(28, 142, 199, 0.2)"
+        >
+          <div class="project-header">
+            <span class="proj-num">02.</span>
+            <span class="proj-name">Startup Invest Banking</span>
+          </div>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="proj-desc">
+                A digital banking platform designed for Russian-speaking
+                expatriates in the UAE, providing a seamless and secure
+                financial experience while ensuring compliance with local
+                regulations.
+              </p>
+              <ul class="proj-metrics">
+                <li>
+                  Increased user trust and engagement, leading to
+                  <mark>10,000+ new active accounts</mark> within six months
+                </li>
+                <li>
+                  Improved user onboarding, reducing the average sign-up time
+                  <mark>by 3 minutes</mark>, resulting in a
+                  <mark>15% increase</mark> in successful registrations
+                </li>
+                <li>
+                  Designed multi-currency accounts &amp; analytics, enabling
+                  users to track transactions in
+                  <mark>three major currencies</mark> and improving financial
+                  management
+                </li>
+              </ul>
+              <a href="#" class="btn-view">View project</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div" />
+
+        <div
+          class="project"
+          onclick="selectProject(2)"
+          style="--accent: #5d7a8b; --accent-mark: rgba(93, 122, 139, 0.2)"
+        >
+          <div class="project-header">
+            <span class="proj-num">03.</span>
+            <span class="proj-name"
+              >MedixBridge<br />Medical Startup in Germany</span
+            >
+          </div>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="proj-desc">
+                A digital recruitment platform that connects doctors, medical
+                students, and clinics in Germany. The platform automates job
+                applications, credential verification, and interview scheduling.
+              </p>
+              <ul class="proj-metrics">
+                <li>
+                  Reduced hiring process delays
+                  <mark>from 10 days to 6 days</mark> through automation
+                </li>
+                <li>
+                  Improved placement success rates, decreasing average time to
+                  hire <mark>from 3 weeks to 1.5 weeks</mark>
+                </li>
+                <li>
+                  Integrated real-time department insights, enabling clinics to
+                  fill vacancies <mark>30% faster</mark> and helping doctors
+                  make informed job decisions
+                </li>
+              </ul>
+              <a href="#" class="btn-view">View project</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div" />
+
+        <div
+          class="project"
+          onclick="selectProject(3)"
+          style="--accent: #0b81f4; --accent-mark: rgba(11, 129, 244, 0.2)"
+        >
+          <div class="project-header">
+            <span class="proj-num">04.</span>
+            <span class="proj-name"
+              >Novus Team<br />Sales &amp; Branding Enhancement</span
+            >
+          </div>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="proj-desc">
+                Developed a high-impact sales presentation that helped Novus
+                Team increase client acquisition and strengthen brand
+                positioning.
+              </p>
+              <ul class="proj-metrics">
+                <li>
+                  Improved sales pitch clarity, leading to
+                  <mark>higher deal closures by 32%</mark>, based on internal
+                  sales team reports
+                </li>
+                <li>
+                  Strengthened <mark>brand messaging</mark>, making company
+                  offerings more compelling and increasing lead engagement by
+                  27%
+                </li>
+                <li>
+                  Optimized internal documentation, reducing onboarding time for
+                  new sales representatives by <mark>40%</mark>, enabling faster
+                  ramp-up to full productivity
+                </li>
+              </ul>
+              <a href="#" class="btn-view">View project</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div" />
+      </div>
+
+      <!-- Project Image — same height as project list -->
+      <div class="proj-visual">
+        <video width="640" height="360" autoplay muted playsinline loop>
+          <source src="video.mov" type="video/quicktime" />
+          <source src="video.mov" type="video/mp4" />
+
+          Your browser does not support the video tag.
+        </video>
+        <img
+          src="assets/projects/bank-project-main.jpg"
+          alt="Startup Invest Banking"
+          data-project="1"
+          decoding="async"
+        />
+        <div class="proj-overlay" data-project="1">
+          <div class="phones-scroll">
+            <img src="assets/invest-bank/phones.svg" alt="" decoding="async" />
+            <img src="assets/invest-bank/phones.svg" alt="" decoding="async" />
+          </div>
+        </div>
+        <img
+          src="assets/projects/mb-main-project.jpg"
+          alt="MedixBridge"
+          data-project="2"
+          decoding="async"
+        />
+        <img
+          src="assets/projects/novus-main-project.jpg"
+          alt="Novus Team"
+          decoding="async"
+          data-project="3"
+        />
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="about-grid">
+      <div class="about-grid-box">
+        <div class="about-photo">
+          <img src="assets/pics/avatar.png" alt="Vagho Poghosyan" />
+        </div>
+        <div class="about-content">
+          <p>
+            My work sits at the intersection of business strategy, behavioral
+            insight, and systematic thinking. I translate ambiguous problems
+            into clear product direction, turning research and analytics into
+            decisions that drive engagement, retention, and revenue.
+          </p>
+          <p>
+            I architect design systems that scale — giving teams the vocabulary
+            to ship faster without sacrificing coherence. I run A/B tests that
+            challenge assumptions. I collaborate with engineers, product
+            managers, and stakeholders who expect more than beautiful screens —
+            they expect results.
+          </p>
+          <p>Thanks for stopping by :)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-box">
+        <div class="footer-links-row">
+          <div class="footer-col">
+            <a
+              href="https://drive.google.com/file/d/19Rbyi-Sew2eiV24mjJtQF4x4R05be1f1/view"
+              target="_blank"
+            >
+              My CV
+              <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M4 14L14 4M14 4H7M14 4V11"
+                  stroke="#0e1b29"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a href="https://t.me/vaghodesigner" target="_blank">
+              Telegram
+              <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M4 14L14 4M14 4H7M14 4V11"
+                  stroke="#0e1b29"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="footer-col" style="align-items: flex-end">
+            <a
+              href="https://www.linkedin.com/in/vagharshak-poghosyan/"
+              target="_blank"
+            >
+              Linkedin
+              <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M4 14L14 4M14 4H7M14 4V11"
+                  stroke="#0e1b29"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.behance.net/vagharspoghosy-uiux"
+              target="_blank"
+            >
+              Behance
+              <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M4 14L14 4M14 4H7M14 4V11"
+                  stroke="#0e1b29"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div class="footer-watermark">Let's collaborate</div>
+          <div class="footer-contacts">
+            <a href="https://wa.me/+37477177375">+374 77 177 375</a>
+            <a href="mailto:vaghodesigner@gmail.com">vaghodesigner@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function selectProject(idx) {
+        document.querySelectorAll(".project").forEach(function (el, i) {
+          el.classList.toggle("active", i === idx);
+        });
+        document
+          .querySelectorAll(".proj-visual [data-project]")
+          .forEach(function (el) {
+            el.classList.toggle("active", Number(el.dataset.project) === idx);
+          });
+      }
+
+      function updateTime() {
+        const options = {
+          timeZone: "Asia/Yerevan",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        };
+        document.getElementById("armenia-time").textContent =
+          new Date().toLocaleTimeString("en-US", options);
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>
