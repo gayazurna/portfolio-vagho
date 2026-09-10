@@ -84,7 +84,7 @@
         position: relative;
         width: 100%;
         aspect-ratio: 1920 / 866;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
         overflow: hidden;
         background-image: url("assets/nvidia/background.png");
         background-size: cover;
@@ -186,7 +186,7 @@
       .case-meta {
         display: flex;
         flex-wrap: wrap;
-        gap: 60px;
+        gap: 30px;
         margin: 56px 0;
       }
 
@@ -205,7 +205,7 @@
 
       /* ── SECTIONS ────────────────────────────────── */
       .case-section {
-        margin-top: 100px;
+        margin-top: 80px;
       }
 
       .case-section h2 {
@@ -299,14 +299,110 @@
       }
 
       .faq-compare {
-        display: flex;
-        gap: 24px;
-        align-items: flex-start;
+        max-width: 1180px;
       }
 
-      .faq-compare img {
-        max-width: 100%;
+      .compare-slider {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 5676 / 3188;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #000;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: pan-y;
+      }
+
+      .compare-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
+        pointer-events: none;
+      }
+
+      .compare-after {
+        clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+      }
+
+      .compare-label {
+        position: absolute;
+        top: 16px;
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 5px 10px;
+        border-radius: 4px;
+        pointer-events: none;
+      }
+
+      .compare-label-before {
+        left: 16px;
+      }
+
+      .compare-label-after {
+        right: 16px;
+      }
+
+      .compare-divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: var(--pos, 50%);
+        width: 2px;
+        background: #fff;
+        transform: translateX(-50%);
+        pointer-events: none;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+      }
+
+      .compare-handle {
+        position: absolute;
+        top: 50%;
+        left: var(--pos, 50%);
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        pointer-events: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .compare-range {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: ew-resize;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .compare-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 44px;
+        height: 44px;
+      }
+
+      .compare-range::-moz-range-thumb {
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
       }
 
       /* ── QUOTE / STRATEGY ────────────────────────── */
@@ -331,7 +427,7 @@
 
       /* ── CLOSING TEXT ────────────────────────────── */
       .case-closing {
-        margin-top: 100px;
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -347,7 +443,7 @@
 
       /* ── DEMO BANNER ─────────────────────────────── */
       .demo-banner {
-        margin: 100px 0 0;
+        margin: 80px 0 0;
         border-radius: 10px;
         overflow: hidden;
         min-height: clamp(220px, 22vw, 340px);
@@ -441,7 +537,7 @@
 
       /* ── NEXT PROJECT ────────────────────────────── */
       .next-project {
-        margin: 40px 0 0;
+        margin: 80px 0 0;
         border: 1px solid #d1d1d1;
         border-radius: 10px;
         padding: 40px;
@@ -478,6 +574,50 @@
         object-fit: contain;
         border-radius: 10px;
         flex-shrink: 0;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .next-project {
+          cursor: none;
+        }
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: #0e1b29;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 999;
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+        transition:
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.25s ease;
+      }
+
+      .custom-cursor.is-visible {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      .custom-cursor svg {
+        transform: rotate(-45deg);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .custom-cursor.is-visible svg {
+        transform: rotate(0deg);
       }
 
       /* ── FOOTER (shared with index.html) ────────── */
@@ -577,6 +717,25 @@
         }
       }
 
+      @media (max-width: 1560px) {
+        .footer-watermark {
+          font-size: 40px;
+        }
+      }
+
+      @media (max-width: 1472px) {
+        .footer-bottom-row {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-contacts {
+          align-items: flex-start;
+          margin-left: 0;
+        }
+      }
+
       /* Tablet / small laptop: the two-column grid gets too cramped
          before this point, so drop to a single stacked column early. */
       @media (max-width: 1240px) {
@@ -612,12 +771,24 @@
           margin: 40px 0;
         }
 
-        .faq-compare {
-          flex-direction: column;
+        .compare-handle {
+          width: 36px;
+          height: 36px;
         }
 
-        .faq-compare img {
-          width: 100%;
+        .compare-range::-webkit-slider-thumb {
+          width: 36px;
+          height: 36px;
+        }
+
+        .compare-range::-moz-range-thumb {
+          width: 36px;
+          height: 36px;
+        }
+
+        .compare-label {
+          font-size: 10px;
+          padding: 4px 8px;
         }
 
         .demo-banner {
@@ -629,7 +800,6 @@
 
         .next-project {
           margin: 32px 0 0;
-          flex-direction: column;
           align-items: flex-start;
           gap: 16px;
           padding: 24px;
@@ -680,6 +850,10 @@
         .case-meta {
           gap: 24px;
           margin: 32px 0;
+        }
+
+        .footer-watermark {
+          font-size: 26px;
         }
 
         .demo-banner {
@@ -826,13 +1000,50 @@
           </ul>
 
           <p class="faq-caption">
-            The old version of the F.A.Q. section for GeForce NOW
+            Drag to compare the old and new F.A.Q. section for GeForce NOW
           </p>
           <div class="faq-compare">
-            <img
-              src="assets/nvidia/faq.png"
-              alt="Old GeForce NOW F.A.Q section — desktop overview"
-            />
+            <div class="compare-slider" style="--pos: 50%">
+              <img
+                class="compare-img compare-before"
+                src="assets/nvidia/faq-new.png"
+                alt="Old GeForce NOW F.A.Q section"
+              />
+              <img
+                class="compare-img compare-after"
+                src="assets/nvidia/faq-old.png"
+                alt="New GeForce NOW F.A.Q section"
+              />
+              <span class="compare-label compare-label-before">Before</span>
+              <span class="compare-label compare-label-after">After</span>
+              <div class="compare-divider"></div>
+              <div class="compare-handle">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                  <path
+                    d="M8 6L2 12L8 18"
+                    stroke="#0e1b29"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M16 6L22 12L16 18"
+                    stroke="#0e1b29"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+              <input
+                type="range"
+                class="compare-range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Drag to compare the old and new F.A.Q section"
+              />
+            </div>
           </div>
         </section>
 
@@ -943,19 +1154,6 @@
           </ul>
         </section>
 
-        <!-- CLOSING -->
-        <div class="case-closing">
-          <p>
-            This project was an outsourcing collaboration, and I truly enjoyed
-            contributing to a company like NVIDIA GFN.
-          </p>
-          <p>
-            As a Product UI/UX Designer, I am committed to delivering effective
-            and high-quality design solutions. This project was no exception. I
-            am open to new professional opportunities and collaborations.
-          </p>
-        </div>
-
         <!-- DEMO BANNER -->
         <div class="demo-banner">
           <div class="demo-banner-title">NVIDIA DEMO VERSION</div>
@@ -974,6 +1172,20 @@
             >
           </div>
           <div class="logo-svg"><img src="./assets/nvidia/logo.svg" /></div>
+        </div>
+
+        <!-- CLOSING -->
+        <div class="case-closing">
+          <p>
+            This project was an outsourcing collaboration, and I truly enjoyed
+            contributing to a company like NVIDIA GFN.
+          </p>
+          <p>
+            As a Product UI/UX Designer, I have committed to delivering
+            effective and high-quality design solutions. This project was no
+            exception. I am open to new professional opportunities and
+            collaborations.
+          </p>
         </div>
 
         <!-- NEXT PROJECT -->
@@ -1070,6 +1282,19 @@
       </div>
     </main>
 
+    <div class="custom-cursor" id="customCursor">
+      <span>View project</span>
+      <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+        <path
+          d="M4 14L14 4M14 4H7M14 4V11"
+          stroke="#76b900"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
     <script>
       function updateTime() {
         const options = {
@@ -1083,6 +1308,37 @@
       }
       updateTime();
       setInterval(updateTime, 1000);
+
+      document.querySelectorAll(".compare-slider").forEach(function (slider) {
+        const range = slider.querySelector(".compare-range");
+        function update(value) {
+          slider.style.setProperty("--pos", value + "%");
+        }
+        update(range.value);
+        range.addEventListener("input", function () {
+          update(range.value);
+        });
+      });
+
+      (function () {
+        const cursor = document.getElementById("customCursor");
+        const target = document.querySelector(".next-project");
+        if (!cursor || !target) return;
+
+        function moveCursor(e) {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        }
+
+        target.addEventListener("mouseenter", function (e) {
+          moveCursor(e);
+          cursor.classList.add("is-visible");
+        });
+        target.addEventListener("mousemove", moveCursor);
+        target.addEventListener("mouseleave", function () {
+          cursor.classList.remove("is-visible");
+        });
+      })();
     </script>
   </body>
 </html>
