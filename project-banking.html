@@ -1,0 +1,1515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Startup Invest Banking — Case Study | Vagho Poghosyan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=Inter:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Martel", Georgia, serif;
+        background: #fff;
+        color: #0e1b29;
+        -webkit-font-smoothing: antialiased;
+        --accent: #1c8ec7;
+        --accent-mark: rgba(28, 142, 199, 0.2);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* ── NAV ─────────────────────────────────────── */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 80px;
+        color: white;
+        background-color: #202121;
+      }
+
+      .logo {
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+      }
+
+      .nav-right {
+        font-family:
+          "Martina Plantijn Regular", "Martina Plantijn Regular Placeholder",
+          sans-serif;
+        display: flex;
+        gap: 40px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .nav-right a:hover {
+        opacity: 0.6;
+      }
+
+      mark {
+        background: var(--accent-mark);
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+      }
+
+      .arrow-icon {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      /* ── HERO ────────────────────────────────────── */
+      .case-hero {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1920 / 866;
+        margin-bottom: 80px;
+        overflow: hidden;
+        background-image: url("assets/invest-bank/background.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .case-hero-phones {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .phones-scroll {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: phones-run 25s linear infinite;
+        will-change: transform;
+      }
+
+      .phones-scroll img {
+        display: block;
+        flex-shrink: 0;
+        height: clamp(120px, 25.8vw, 495px);
+        width: auto;
+        margin-right: clamp(40px, 10vw, 196px);
+      }
+
+      @keyframes phones-run {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ── CASE GRID ───────────────────────────────── */
+      .case-grid {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        column-gap: 80px;
+        padding: 0 80px;
+        max-width: 1920px;
+      }
+
+      .case-sidebar {
+        position: sticky;
+        top: 40px;
+        align-self: start;
+        height: max-content;
+      }
+
+      .case-sidebar .eyebrow {
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+      }
+
+      .case-sidebar h1 {
+        font-size: clamp(22px, 4vw, 28px);
+        font-weight: 700;
+        color: #0e1b29;
+        margin-top: 6px;
+      }
+
+      .case-sidebar .slides-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 24px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .case-sidebar .slides-link:hover {
+        color: #0e1b29;
+      }
+
+      .case-content {
+        border-left: 1px solid #d1d1d1;
+        padding-left: 80px;
+        min-width: 0;
+      }
+
+      .case-intro {
+        font-size: clamp(17px, 2vw, 20px);
+        font-weight: 600;
+        line-height: 1.6;
+        color: #0e1b29;
+        max-width: 1180px;
+        padding-top: 4px;
+      }
+
+      /* ── META ROW ────────────────────────────────── */
+      .case-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 54px;
+        margin: 56px 0;
+      }
+
+      .meta-label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        margin-bottom: 12px;
+      }
+
+      .meta-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+      }
+
+      .meta-cols {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+
+      .mini-logo {
+        display: flex;
+        align-self: flex-end;
+      }
+
+      .mini-logo img {
+        display: block;
+        width: auto;
+        height: 70px;
+      }
+
+      /* ── SECTIONS ────────────────────────────────── */
+
+      .case-section h2 {
+        margin-top: 80px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1c8ec7;
+        margin-bottom: 28px;
+      }
+
+      .case-section h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #0e1b29;
+        margin-bottom: 12px;
+      }
+
+      .case-section p {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.7;
+        color: #474747;
+        max-width: 1180px;
+      }
+
+      .case-section a {
+        text-decoration: underline dotted;
+        font-size: 16px;
+        color: #5a5a5a;
+        margin-left: 20px;
+      }
+
+      .case-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 16px;
+        max-width: 1180px;
+      }
+
+      .case-list li {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.7;
+        color: #474747;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .case-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .case-ol {
+        list-style: none;
+        counter-reset: approach;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        margin-top: 20px;
+        max-width: 1180px;
+      }
+
+      .case-ol > li {
+        counter-increment: approach;
+        font-size: 18px;
+        font-weight: 700;
+        color: #0e1b29;
+        padding-left: 34px;
+        position: relative;
+      }
+
+      .case-ol > li::before {
+        content: counter(approach) ".";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent);
+      }
+
+      .case-ol p {
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+      }
+
+      /* ── CAPTION / DOC EMBED ─────────────────────── */
+      .img-caption {
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        margin: 32px 0 0;
+      }
+
+      .doc-embed {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        padding: 12px 18px;
+        border: 1px solid #d1d1d1;
+        border-radius: 8px;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #474747;
+      }
+
+      .doc-embed svg {
+        flex-shrink: 0;
+      }
+
+      /* ── IMAGE PLACEHOLDER ───────────────────────── */
+      .img-placeholder {
+        margin-top: 14px;
+        border-radius: 10px;
+        border: 1px dashed #b7c4cc;
+        background: repeating-linear-gradient(
+          135deg,
+          #eef3f6,
+          #eef3f6 12px,
+          #e4ecf1 12px,
+          #e4ecf1 24px
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 24px;
+        max-width: 1180px;
+      }
+
+      .img-placeholder span {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #5a7180;
+        max-width: 320px;
+      }
+
+      /* ── PERSONA TABLE ───────────────────────────── */
+      .persona-table-wrap {
+        margin-top: 14px;
+        overflow-x: auto;
+        max-width: 1180px;
+      }
+
+      .persona-table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 640px;
+      }
+
+      .persona-table th,
+      .persona-table td {
+        text-align: left;
+        padding: 14px 16px;
+        border: 1px solid #e2e2e2;
+        font-size: 14px;
+        vertical-align: top;
+      }
+
+      .persona-table thead th {
+        background: #f5f6f8;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #0e1b29;
+      }
+
+      .persona-table tbody th {
+        background: #fafafa;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #474747;
+        white-space: nowrap;
+      }
+
+      .persona-table td {
+        color: #474747;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      /* ── TWO COLUMN ──────────────────────────────── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 64px;
+      }
+      .two-col h3 {
+        color: #1c8ec7;
+      }
+
+      /* ── CLOSING TEXT ────────────────────────────── */
+      .case-closing {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 1180px;
+      }
+
+      .case-closing p {
+        font-weight: 600;
+        line-height: 1.7;
+        color: #0e1b29;
+      }
+
+      /* ── DEMO BANNER ─────────────────────────────── */
+      .demo-banner {
+        margin: 80px 0 0;
+        border-radius: 10px;
+        overflow: hidden;
+        /* min-height: clamp(180px, 18vw, 260px); */
+        height: 262px;
+        background: linear-gradient(135deg, #0e2f42, #1c8ec7 130%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 40px;
+      }
+
+      .demo-banner-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+      }
+
+      .demo-banner-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .btn-light {
+        position: relative;
+        z-index: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 28px;
+        border: 1px solid #fff;
+        border-radius: 22px;
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        transition: color 0.3s ease;
+      }
+
+      .btn-light::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: #fff;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.3s ease;
+      }
+
+      .btn-light:hover {
+        color: #0e1b29;
+      }
+
+      .btn-light:hover::before {
+        transform: scaleY(1);
+      }
+
+      /* ── NEXT PROJECT ────────────────────────────── */
+      .next-project {
+        margin: 80px 0 0;
+        border: 1px solid #d1d1d1;
+        border-radius: 10px;
+        padding: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: border-color 0.2s ease;
+      }
+
+      .next-project:hover {
+        border-color: #0e1b29;
+      }
+
+      .next-project .eyebrow {
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: #5a5a5a;
+        text-transform: uppercase;
+      }
+
+      .next-project h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0e1b29;
+        margin-top: 10px;
+      }
+
+      .next-project-thumb {
+        height: 100px;
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        flex-shrink: 0;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .next-project {
+          cursor: none;
+        }
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        color: #0e1b29;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 999;
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+        transition:
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.25s ease;
+      }
+
+      .custom-cursor.is-visible {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      .custom-cursor svg {
+        transform: rotate(-45deg);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .custom-cursor.is-visible svg {
+        transform: rotate(0deg);
+      }
+
+      /* ── FOOTER (shared with index.html) ────────── */
+      footer {
+        padding: 80px 0;
+      }
+
+      .footer-box {
+        background: #f7f7f7;
+        border-radius: 10px;
+        min-height: 361px;
+        position: relative;
+        overflow: hidden;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .footer-watermark {
+        font-size: clamp(24px, 4vw, 56px);
+        font-weight: 600;
+        color: rgba(14, 27, 41, 0.15);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        line-height: 1.15;
+      }
+
+      .footer-links-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 40px;
+        justify-content: space-between;
+      }
+
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-col a {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .footer-col a:hover {
+        opacity: 0.6;
+      }
+
+      .footer-bottom-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        row-gap: 16px;
+        column-gap: 40px;
+      }
+
+      .footer-contacts {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 20px;
+        margin-left: auto;
+      }
+
+      .footer-contacts a {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e1b29;
+        text-decoration: underline;
+        letter-spacing: 0.03em;
+      }
+
+      .footer-contacts a:hover {
+        opacity: 0.6;
+      }
+
+      /* ── RESPONSIVE ──────────────────────────────── */
+      @media (max-width: 1560px) {
+        .footer-watermark {
+          font-size: 40px;
+        }
+      }
+
+      @media (max-width: 1472px) {
+        .footer-bottom-row {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .footer-contacts {
+          align-items: flex-start;
+          margin-left: 0;
+        }
+      }
+
+      /* Tablet / small laptop: the two-column grid gets too cramped
+         before this point, so drop to a single stacked column early. */
+      @media (max-width: 1240px) {
+        nav {
+          padding: 24px;
+        }
+
+        .case-hero {
+          margin-bottom: 60px;
+        }
+
+        .case-grid {
+          grid-template-columns: 1fr;
+          padding: 0 24px;
+          row-gap: 24px;
+        }
+
+        .case-sidebar {
+          position: static;
+        }
+
+        .case-content {
+          border-left: none;
+          padding-left: 0;
+        }
+
+        .case-section h2 {
+          margin-top: 64px;
+        }
+
+        .case-meta {
+          gap: 32px;
+          margin: 40px 0;
+        }
+
+        .mini-logo {
+          flex-basis: 100%;
+          justify-content: flex-start;
+          align-self: flex-start;
+        }
+
+        .mini-logo img {
+          height: 56px;
+        }
+
+        .two-col {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .demo-banner {
+          margin: 64px 0 0;
+          min-height: 0;
+          gap: 16px;
+          padding: 24px;
+        }
+
+        .next-project {
+          margin: 32px 0 0;
+          align-items: centers;
+          gap: 16px;
+          padding: 24px;
+        }
+
+        footer {
+          padding: 40px 0;
+        }
+
+        .footer-bottom-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        }
+
+        .footer-contacts {
+          align-items: flex-start;
+          margin-left: 0;
+        }
+      }
+
+      /* Phones: tighten spacing further. */
+      @media (max-width: 480px) {
+        nav {
+          padding: 16px;
+        }
+
+        .nav-right {
+          gap: 16px;
+        }
+
+        .case-hero {
+          margin-bottom: 40px;
+        }
+
+        .case-grid {
+          padding: 0 16px;
+        }
+
+        .case-section h2 {
+          margin-top: 48px;
+        }
+
+        .case-meta {
+          gap: 24px;
+          margin: 32px 0;
+        }
+
+        .mini-logo img {
+          height: 44px;
+        }
+
+        .footer-watermark {
+          font-size: 26px;
+          white-space: normal;
+        }
+
+        .demo-banner {
+          margin: 48px 0 0;
+          padding: 20px;
+        }
+
+        .next-project {
+          margin: 24px 0 0;
+          padding: 20px;
+        }
+
+        .next-project-thumb {
+          max-width: 100%;
+        }
+
+        .footer-box {
+          padding: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a class="logo" href="index.html">Vagho Poghosyan</a>
+      <div class="nav-right">
+        <span>ARM <span id="armenia-time"></span></span>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="case-hero">
+      <div class="case-hero-phones">
+        <div class="phones-scroll">
+          <img
+            src="assets/invest-bank/phones-small.svg"
+            alt=""
+            decoding="async"
+          />
+          <img
+            src="assets/invest-bank/phones-small.svg"
+            alt=""
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE GRID -->
+    <main class="case-grid">
+      <aside class="case-sidebar">
+        <div class="eyebrow">INVEST 2022</div>
+        <h1>Premium online banking</h1>
+        <a
+          class="slides-link"
+          href="https://www.figma.com/design/ZsDcC9owht4kyt94VbJBI8/INVEST.-Service-structure.-DEMO-MVP?node-id=43-2&t=gIl9lORMMgJqIBUM-1"
+          target="_blank"
+        >
+          See process in Figma Slides
+          <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+            <path
+              d="M4 14L14 4M14 4H7M14 4V11"
+              stroke="#1c8ec7"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </aside>
+
+      <div class="case-content">
+        <p class="case-intro">
+          Digital bank for Russian-speaking expats in the UAE that will solve
+          the problems of trust, language and regulatory barriers. &ldquo;INVEST
+          Bank: How we combined two cultures in one interface.&rdquo;
+        </p>
+
+        <div class="case-meta">
+          <div class="meta-group">
+            <div class="meta-label">My role</div>
+            <div class="meta-name">Senior Product designer</div>
+            <div class="meta-name">(UX/UI, Research)</div>
+          </div>
+          <div class="meta-group">
+            <div class="meta-label">Other Participants</div>
+            <div class="meta-cols">
+              <div class="meta-col">
+                <div class="meta-name">Middle UI/UX designer</div>
+                <div class="meta-name">Junior UI/UX designer</div>
+              </div>
+              <div class="meta-col">
+                <div class="meta-name">Product owner</div>
+                <div class="meta-name">Product analyst</div>
+              </div>
+              <div class="meta-col">
+                <div class="meta-name">Project manager</div>
+              </div>
+            </div>
+          </div>
+          <div class="mini-logo">
+            <img
+              src="./assets/invest-bank/bank-mini-logo.svg"
+              alt="Invest Bank"
+            />
+          </div>
+        </div>
+
+        <div class="img-placeholder" style="aspect-ratio: 1419 / 797">
+          <span>App overview — key screens preview</span>
+        </div>
+
+        <!-- TASK -->
+        <section class="case-section">
+          <h2>Task</h2>
+          <p>
+            Objective: To develop a digital banking platform that feels
+            &laquo;at home&raquo; for CIS users, while ensuring full compliance
+            with UAE laws and regulations. The aim was to deliver a seamless,
+            culturally familiar banking experience for Russian expatriates in
+            the UAE, addressing key barriers such as language, citizenship
+            challenges, and trust in local financial systems. Additionally, the
+            project sought to enable Russian expatriates to receive their
+            salaries directly into their accounts at Invest Bank and provide a
+            user interface based on familiar Russian banking concepts.
+          </p>
+
+          <div class="img-placeholder" style="aspect-ratio: 1419 / 953">
+            <span>Task overview mockup</span>
+          </div>
+
+          <h2>The Main Goal</h2>
+          <p>
+            To develop a digital bank that feels &ldquo;at home&rdquo; for CIS
+            users, while ensuring full compliance with UAE laws. The project
+            focused on addressing 3 main pain points: language, citizenship, and
+            trust.
+          </p>
+
+          <div class="img-placeholder" style="aspect-ratio: 1418 / 834">
+            <span>Main goal supporting visual</span>
+          </div>
+        </section>
+
+        <!-- UX METHODOLOGY -->
+        <section class="case-section">
+          <h2>
+            UX Methodology &amp; Process
+            <a
+              target="_blank"
+              href="https://docs.google.com/spreadsheets/d/1lTPTF7kj7uGSep4jmihO27ls-fCuuWsvLjKdHQrXbok/edit?gid=0#gid=0"
+              >Select a file to preview in Google Drive</a
+            >
+          </h2>
+
+          <p>
+            To develop a digital bank that feels “at home” for CIS users, while
+            ensuring full compliance with UAE laws. The project focused on
+            addressing 3 main pain points: language, citizenship, and trust.
+          </p>
+
+          <h3 style="margin-top: 36px">1. BRD &amp; User Research</h3>
+          <p>
+            A thorough brief was produced, and comprehensive research was
+            conducted to understand the needs, pain points, and behaviors of
+            Russian expatriates in the UAE. These insights informed all
+            subsequent design decisions.
+          </p>
+
+          <h3 style="margin-top: 36px">2. Customer Journey Mapping (CJM)</h3>
+          <p>
+            The entire journey from app discovery to using key features like
+            account management and transaction history was mapped. This allowed
+            us to visualize pain points at each step, enabling us to optimize
+            the user experience.
+          </p>
+
+          <p style="margin-top: 20px; margin-bottom: 16px">
+            <strong>Target audience</strong>
+          </p>
+          <p>
+            A significant portion of Invest Bank&rsquo;s target audience
+            consists of IT professionals, engineers, developers, and tech
+            entrepreneurs living in the UAE. This group is digitally fluent,
+            aware of tech innovations, and demands efficient, secure, and
+            seamless banking solutions that match their fast-paced, tech-driven
+            lifestyles.
+          </p>
+          <p style="margin-top: 20px"><strong>Demographics:</strong></p>
+          <ul class="case-list">
+            <li><strong>Age:</strong> Typically aged 25&ndash;45.</li>
+            <li>
+              <strong>Occupation:</strong> IT professionals, software
+              developers, digital entrepreneurs, and tech startup founders.
+            </li>
+            <li>
+              <strong>Location:</strong> Primarily based in cities like Dubai
+              and Abu Dhabi, where the tech industry thrives and offers
+              opportunities for business and professional growth.
+            </li>
+            <li>
+              <strong>Needs:</strong> Digital-First Solutions — these users
+              expect a banking experience that integrates seamlessly into their
+              digital life, prioritizing online and mobile banking with
+              self-service and automated features.
+            </li>
+          </ul>
+
+          <p style="margin-top: 20px"><strong>Persona analysis</strong></p>
+          <div class="persona-table-wrap">
+            <table class="persona-table">
+              <thead>
+                <tr>
+                  <th>Group</th>
+                  <th>IT specialists</th>
+                  <th>Businessmen</th>
+                  <th>Marketers, bloggers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td>Nikolay, Developer</td>
+                  <td>Sergey, Entrepreneur</td>
+                  <td>Natasha, Marketer</td>
+                </tr>
+                <tr>
+                  <th>Age</th>
+                  <td>25</td>
+                  <td>40</td>
+                  <td>30&ndash;45</td>
+                </tr>
+                <tr>
+                  <th>Solvency</th>
+                  <td>Average</td>
+                  <td>Tall</td>
+                  <td>Average</td>
+                </tr>
+                <tr>
+                  <th>Motivation</th>
+                  <td>
+                    Frequent financial transactions, investing, international
+                    transfers, paying bills
+                  </td>
+                  <td>Payroll, business expenses management, investments</td>
+                  <td>
+                    Payment for services, earnings on social platforms, expense
+                    management
+                  </td>
+                </tr>
+                <tr>
+                  <th>Expectations</th>
+                  <td>
+                    Security, high speed of transactions, access to investment
+                    opportunities, international transfers
+                  </td>
+                  <td>
+                    Convenient online banking, business expense management,
+                    saving money
+                  </td>
+                  <td>
+                    Ease of use, clear interface, possibility of integration
+                    with social platforms
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top: 32px">
+            Users expressed a strong need for monthly spending analytics to
+            track their expenses and understand their financial habits. They
+            wanted a clear breakdown of where their money was going — on daily
+            purchases, subscriptions, transfers, or savings — to manage their
+            finances more effectively.
+          </p>
+          <ul class="case-list">
+            <li>
+              <mark>85%</mark> expressed frustration over the inability to open
+              local accounts without UAE residency.
+            </li>
+            <li>
+              <mark>70%</mark> preferred banking apps that allowed full access
+              to services without needing to visit physical branches.
+            </li>
+          </ul>
+
+          <div class="img-placeholder" style="aspect-ratio: 1340 / 755">
+            <span>Persona &amp; research summary visual</span>
+          </div>
+        </section>
+
+        <!-- COMPETITIVE ANALYSIS -->
+        <section class="case-section">
+          <h3 style="margin-top: 36px">
+            3. Competitive Analysis
+            <a
+              target="_blank"
+              href="https://docs.google.com/spreadsheets/d/1lTPTF7kj7uGSep4jmihO27ls-fCuuWsvLjKdHQrXbok/edit?gid=0#gid=0"
+              >Select a file to preview in Google Drive</a
+            >
+          </h3>
+
+          <ul class="case-list" style="margin-top: 28px">
+            <li>
+              <strong>Tinkoff Bank</strong> &ndash; Known for its fully digital
+              banking experience, intuitive mobile app, and strong financial
+              analytics.
+            </li>
+            <li>
+              <strong>SberBank</strong> &ndash; A trusted banking giant with a
+              vast ecosystem, but a more traditional interface.
+            </li>
+            <li>
+              <strong>Alfa-Bank</strong> &ndash; Offers advanced financial tools
+              and a business-friendly platform with international banking
+              options.
+            </li>
+          </ul>
+
+          <h3 style="margin-top: 36px">
+            🔍 Key Takeaways &amp; Improvements for Invest Bank:
+          </h3>
+          <ul class="case-list">
+            <li>
+              <strong>Seamless UX:</strong> Forged an intuitive navigation
+              system, inspired by Tinkoff&rsquo;s mobile-first approach.
+            </li>
+            <li>
+              <strong>Advanced Analytics:</strong> Showcased detailed spending
+              insights, addressing gaps in competitor offerings.
+            </li>
+            <li>
+              <strong>Familiar UI:</strong> Developed an interface that feels
+              natural to CIS users while complying with UAE regulations.
+            </li>
+            <li>
+              <strong>Fast Onboarding:</strong> Secured quick, fully online
+              account opening, solving residency-related challenges.
+            </li>
+          </ul>
+
+          <p class="img-caption">Transfer analytics:</p>
+          <div class="img-placeholder" style="aspect-ratio: 1419 / 797">
+            <span>Transfer analytics screen</span>
+          </div>
+        </section>
+
+        <!-- NEEDS & USER INSIGHTS -->
+        <section class="case-section">
+          <h3 style="margin-top: 36px">4. Needs &amp; User Insights</h3>
+          <p style="font-size: 16px; font-style: italic">
+            One example of In-depth interview
+          </p>
+          <ul class="case-list">
+            <li>
+              <strong>Digital-First Solutions:</strong> Users expect a banking
+              experience that integrates seamlessly into their digital life.
+              They prioritize online and mobile banking, preferring platforms
+              that offer self-service and automated features.
+            </li>
+            <li>
+              <strong>Efficiency &amp; Speed:</strong> Users demand solutions
+              that enable quick transactions, simple account management, and
+              instant access to financial data and transaction histories.
+            </li>
+            <li>
+              <strong>Enhanced Security:</strong> With heightened awareness of
+              cyber threats, users seek platforms that offer strong
+              authentication methods, data encryption, and assurance that their
+              information is protected.
+            </li>
+            <li>
+              <strong>International Flexibility:</strong> As tech professionals
+              often deal with clients and businesses from various countries,
+              they need banking solutions that support international money
+              transfers, multi-currency accounts, and low-fee transactions.
+            </li>
+          </ul>
+
+          <h2>Key challenges</h2>
+          <ol class="case-ol">
+            <li>
+              Outdated Banking Experience
+              <p>
+                Traditional banking apps lacked the smooth, intuitive experience
+                that digital professionals expect.
+              </p>
+            </li>
+            <li>
+              Limited Global Access
+              <p>
+                Many banks required in-person visits to open accounts, making
+                international transactions slow and inconvenient.
+              </p>
+            </li>
+            <li>
+              Barriers for Russian Expats
+              <p>
+                Without UAE citizenship or a residence visa, many struggled to
+                open accounts, get cards, receive salaries, and make payments,
+                forcing them to use expensive workarounds.
+              </p>
+            </li>
+          </ol>
+
+          <p class="img-caption">Payment transaction:</p>
+          <div class="img-placeholder" style="aspect-ratio: 1419 / 755">
+            <span>Payment transaction screen</span>
+          </div>
+        </section>
+
+        <!-- HOW I SOLVED -->
+        <section class="case-section">
+          <h2>How I Solved These UI &amp; UX Problems</h2>
+          <p>
+            By deeply understanding user pain points and employing a data-driven
+            design approach, I transformed Invest Bank into a seamless,
+            efficient, and secure digital banking platform tailored for IT
+            professionals and entrepreneurs in the UAE.
+          </p>
+          <p style="margin-top: 20px">
+            I addressed the most complex sections of the platform, including the
+            account list, account details page, card management page,
+            transaction history, and overall product styling. By refining these
+            key areas, I ensured an intuitive, modern, and visually cohesive
+            experience that aligned with user expectations and met regulatory
+            requirements.
+          </p>
+
+          <p class="img-caption">Mind map for MVP:</p>
+          <div class="img-placeholder" style="aspect-ratio: 1340 / 1177">
+            <span>Mind map for MVP</span>
+          </div>
+        </section>
+
+        <!-- ELIMINATING UX CHALLENGES -->
+        <section class="case-section">
+          <h2>Eliminating UX Challenges with Smart Solutions</h2>
+          <ol class="case-ol">
+            <li>
+              Optimized User Flows:
+              <p>
+                I mapped the entire customer journey, identified friction
+                points, and streamlined the registration, transaction, and
+                account management processes for maximum efficiency. Key areas
+                like the account list and account details pages were simplified,
+                making navigation intuitive and effortless for users to manage
+                their finances.
+              </p>
+            </li>
+            <li>
+              Effortless Account Opening:
+              <p>
+                I redefined the onboarding process, enabling users to open
+                accounts within minutes through a fully online identification
+                system, eliminating the need for paperwork and in-person visits.
+                This was crucial in overcoming residency challenges, ensuring a
+                smooth start for users in the UAE.
+              </p>
+            </li>
+            <li>
+              Seamless Global Banking:
+              <p>
+                I integrated multi-currency accounts and international transfer
+                features, enabling users to manage both local and global
+                finances with ease. Features like low-fee international
+                transfers and real-time transaction tracking were embedded into
+                the card management page and transaction history for an
+                uninterrupted user experience.
+              </p>
+            </li>
+            <li>
+              Real-Time Financial Insights:
+              <p>
+                I introduced monthly analytics to provide users with clear
+                insights into their financial habits. This feature includes an
+                engaging spending breakdown by category, allowing users to track
+                where their money goes, whether for daily purchases,
+                subscriptions, or transfers.
+              </p>
+            </li>
+          </ol>
+
+          <div class="img-placeholder" style="aspect-ratio: 1340 / 723">
+            <span>Support chat &amp; card activation flow</span>
+          </div>
+        </section>
+
+        <!-- DARK/LIGHT + DESIGN SYSTEM -->
+        <section class="case-section">
+          <div class="two-col">
+            <div>
+              <h3>Dark &amp; Light Modes</h3>
+              <p>
+                Recognizing the importance of user preferences, I introduced
+                both dark and light themes, giving users the flexibility to
+                select a visual style that best suits their needs.
+              </p>
+            </div>
+            <div>
+              <h3>Scalable Design System</h3>
+              <p>
+                I developed a robust, reusable design system, ensuring brand
+                consistency, efficiency, and adaptability as the product
+                continues to evolve and scale.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 64px" class="img-placeholder-row">
+            <img src="assets/invest-bank/system.jpg" alt="" decoding="async" />
+          </div>
+        </section>
+        <p style="margin-top: 40px">
+          By addressing these UI and UX challenges, I transformed Invest Bank
+          into a modern, secure, and user-centric digital banking platform,
+          designed to meet the needs of tech-savvy professionals in the UAE.
+        </p>
+
+        <!-- DEMO BANNER -->
+        <div class="demo-banner">
+          <div class="demo-banner-title">
+            Details can be viewed at the link below in Figma
+          </div>
+          <div class="demo-banner-actions">
+            <a
+              class="btn-light"
+              href="https://www.figma.com/design/ZsDcC9owht4kyt94VbJBI8/INVEST.-Service-structure.-DEMO-MVP?node-id=43-2&t=gIl9lORMMgJqIBUM-1"
+              target="_blank"
+              >View Figma</a
+            >
+            <a
+              class="btn-light"
+              href="https://www.behance.net/gallery/133509923/INVEST-Bank"
+              target="_blank"
+              >View Behance</a
+            >
+          </div>
+        </div>
+
+        <!-- CLOSING -->
+        <div class="case-closing">
+          <p>
+            <strong>
+              This project was a fintech startup, and I thoroughly enjoyed
+              contributing to Invest Bank, an innovative online banking
+              solution.</strong
+            >
+          </p>
+          <p>
+            As a Product UI/UX Designer, I am dedicated to delivering effective
+            and high-quality design solutions. This project exemplified my
+            commitment to creating user-centered experiences. I am always open
+            to new professional opportunities and collaborations.
+          </p>
+        </div>
+
+        <!-- NEXT PROJECT -->
+        <a class="next-project" href="index.html">
+          <div>
+            <div class="eyebrow">Next project</div>
+            <h3>MedixBridge: Medical Startup in Germany</h3>
+          </div>
+          <img
+            class="next-project-thumb"
+            src="assets/invest-bank/next.jpg"
+            alt="Startup Invest Banking preview"
+          />
+        </a>
+
+        <!-- FOOTER -->
+        <footer>
+          <div class="footer-box">
+            <div class="footer-links-row">
+              <div class="footer-col">
+                <a
+                  href="https://drive.google.com/file/d/19Rbyi-Sew2eiV24mjJtQF4x4R05be1f1/view"
+                  target="_blank"
+                >
+                  Resume
+                  <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                    <path
+                      d="M4 14L14 4M14 4H7M14 4V11"
+                      stroke="#0e1b29"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+                <a href="https://t.me/vaghodesigner" target="_blank">
+                  Telegram
+                  <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                    <path
+                      d="M4 14L14 4M14 4H7M14 4V11"
+                      stroke="#0e1b29"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+              <div class="footer-col" style="align-items: flex-end">
+                <a
+                  href="https://www.linkedin.com/in/vagharshak-poghosyan/"
+                  target="_blank"
+                >
+                  Linkedin
+                  <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                    <path
+                      d="M4 14L14 4M14 4H7M14 4V11"
+                      stroke="#0e1b29"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.behance.net/vagharspoghosy-uiux"
+                  target="_blank"
+                >
+                  Behance
+                  <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
+                    <path
+                      d="M4 14L14 4M14 4H7M14 4V11"
+                      stroke="#0e1b29"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-bottom-row">
+              <div class="footer-watermark">Let's collaborate</div>
+              <div class="footer-contacts">
+                <a href="https://wa.me/+37477177375">+374 77 177 375</a>
+                <a href="mailto:vaghodesigner@gmail.com"
+                  >vaghodesigner@gmail.com</a
+                >
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <div class="custom-cursor" id="customCursor">
+      <span>View project</span>
+      <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+        <path
+          d="M4 14L14 4M14 4H7M14 4V11"
+          stroke="#1c8ec7"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <script>
+      function updateTime() {
+        const options = {
+          timeZone: "Asia/Yerevan",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        };
+        document.getElementById("armenia-time").textContent =
+          new Date().toLocaleTimeString("en-US", options);
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+
+      (function () {
+        const cursor = document.getElementById("customCursor");
+        const target = document.querySelector(".next-project");
+        if (!cursor || !target) return;
+
+        function moveCursor(e) {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        }
+
+        target.addEventListener("mouseenter", function (e) {
+          moveCursor(e);
+          cursor.classList.add("is-visible");
+        });
+        target.addEventListener("mousemove", moveCursor);
+        target.addEventListener("mouseleave", function () {
+          cursor.classList.remove("is-visible");
+        });
+      })();
+    </script>
+  </body>
+</html>

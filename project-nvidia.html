@@ -171,6 +171,7 @@
       .case-content {
         border-left: 1px solid #d1d1d1;
         padding-left: 80px;
+        min-width: 0;
       }
 
       .case-intro {
@@ -209,9 +210,9 @@
       }
 
       .case-section h2 {
-        font-size: clamp(24px, 3.2vw, 32px);
+        font-size: 24px;
         font-weight: 700;
-        color: #0e1b29;
+        color: #76b900;
         margin-bottom: 28px;
       }
 
@@ -535,6 +536,11 @@
         transform: scaleY(1);
       }
 
+      .mini-logo {
+        display: flex;
+        align-items: self-end;
+      }
+
       /* ── NEXT PROJECT ────────────────────────────── */
       .next-project {
         margin: 80px 0 0;
@@ -561,7 +567,7 @@
       }
 
       .next-project h3 {
-        font-size: clamp(20px, 3vw, 28px);
+        font-size: 24px;
         font-weight: 700;
         color: #0e1b29;
         margin-top: 10px;
@@ -800,7 +806,7 @@
 
         .next-project {
           margin: 32px 0 0;
-          align-items: flex-start;
+          align-items: center;
           gap: 16px;
           padding: 24px;
         }
@@ -854,6 +860,7 @@
 
         .footer-watermark {
           font-size: 26px;
+          white-space: normal;
         }
 
         .demo-banner {
@@ -935,15 +942,18 @@
               Owner
             </dd>
           </div>
+          <div class="mini-logo">
+            <img src="./assets/nvidia/gfn-mini-logo.svg" />
+          </div>
         </dl>
 
         <!-- TASK -->
         <section class="case-section">
           <h2>Task</h2>
           <p>
-            <mark>To create a new F.A.Q section</mark> for NVIDIA GeForce NOW to
-            prevent issues with users who are having difficulty installing and
-            running games or who are unable to contact support.
+            <mark>To create a new F.A.Q. section</mark> for NVIDIA GeForce NOW
+            to prevent issues with users who are having difficulty installing
+            and running games or who are unable to contact support.
           </p>
           <ul class="case-list">
             <li>
@@ -960,7 +970,7 @@
               intuitive &mdash; improved Information Architecture.
             </li>
             <li>
-              Create a new F.A.Q structure that logically simplifies navigation
+              Create a new F.A.Q. structure that logically simplifies navigation
               and separates reference materials from technical support.
             </li>
           </ul>
@@ -976,8 +986,8 @@
           </p>
           <ul class="case-list">
             <li>
-              <mark>41% of users</mark> complained that the
-              &laquo;F.A.Q..&raquo; section did not help solve the problem.
+              <mark>41% of users</mark> complained that the &laquo;F.A.Q.&raquo;
+              section did not help solve the problem.
             </li>
             <li>
               <mark>23,5% of users</mark> discontinued using the platform
@@ -989,7 +999,7 @@
               to access support or find relevant answers.
             </li>
             <li>
-              The F.A.Q section and support pages contained outdated
+              The F.A.Q. section and support pages contained outdated
               information, leading to longer resolution times.
             </li>
             <li>
@@ -1007,12 +1017,12 @@
               <img
                 class="compare-img compare-before"
                 src="assets/nvidia/faq-new.png"
-                alt="Old GeForce NOW F.A.Q section"
+                alt="Old GeForce NOW F.A.Q. section"
               />
               <img
                 class="compare-img compare-after"
                 src="assets/nvidia/faq-old.png"
-                alt="New GeForce NOW F.A.Q section"
+                alt="New GeForce NOW F.A.Q. section"
               />
               <span class="compare-label compare-label-before">Before</span>
               <span class="compare-label compare-label-after">After</span>
@@ -1041,7 +1051,7 @@
                 min="0"
                 max="100"
                 value="50"
-                aria-label="Drag to compare the old and new F.A.Q section"
+                aria-label="Drag to compare the old and new F.A.Q. section"
               />
             </div>
           </div>
@@ -1056,7 +1066,7 @@
               <ul class="case-list">
                 <li>
                   Used Metric to collect analytics on user interactions with the
-                  F.A.Q section, which helped identify weaknesses and key
+                  F.A.Q. section, which helped identify weaknesses and key
                   drop-off points.
                 </li>
                 <li>
@@ -1067,7 +1077,7 @@
                 <li>
                   Based on this data-driven approach, I studied user behavior
                   and search patterns, allowing me to accurately understand what
-                  users were looking for and structure the F.A.Q accordingly.
+                  users were looking for and structure the F.A.Q. accordingly.
                 </li>
               </ul>
             </li>
@@ -1121,7 +1131,7 @@
             By analyzing user behavior and tracking analytics, identified the
             most common pain points and search patterns. This data-driven
             approach provided a clear understanding of what users were looking
-            for, allowing for an optimized user journey. The old F.A.Q section
+            for, allowing for an optimized user journey. The old F.A.Q. section
             was restructured into three key blocks: &laquo;Smart Search,&raquo;
             &laquo;Guides &amp; Manuals,&raquo; and a &laquo;Popular
             Answers&raquo; section with its own subsections. This improved
@@ -1162,13 +1172,13 @@
               class="btn-light"
               href="https://www.figma.com/design/VbakgfXFerXTCOxmIMnPSg/NVDIA-DEMO-VERSION?node-id=0-1&t=PACRuCXnu0nzn5kv-1"
               target="_blank"
-              >View figma</a
+              >View Figma</a
             >
             <a
               class="btn-light"
               href="https://www.behance.net/gallery/209843519/NVIDIA-(GFN-Support-and-Guides)"
               target="_blank"
-              >View behance</a
+              >View Behance</a
             >
           </div>
           <div class="logo-svg"><img src="./assets/nvidia/logo.svg" /></div>
@@ -1189,7 +1199,7 @@
         </div>
 
         <!-- NEXT PROJECT -->
-        <a class="next-project" href="index.html">
+        <a class="next-project" href="project-banking.html">
           <div>
             <div class="eyebrow">Next project</div>
             <h3>Startup Invest Banking</h3>
