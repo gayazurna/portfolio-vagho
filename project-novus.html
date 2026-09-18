@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MedixBridge — Case Study | Vagho Poghosyan</title>
+    <title>Novus Team — Case Study | Vagho Poghosyan</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Martel:wght@400;600;700&family=Inter:wght@500&display=swap"
       rel="stylesheet"
@@ -22,8 +22,8 @@
         background: #fff;
         color: #0e1b29;
         -webkit-font-smoothing: antialiased;
-        --accent: #5d7a8b;
-        --accent-mark: rgba(93, 122, 139, 0.2);
+        --accent: #0b81f4;
+        --accent-mark: rgba(11, 129, 244, 0.2);
       }
 
       a {
@@ -43,7 +43,7 @@
         justify-content: space-between;
         padding: 40px 80px;
         color: white;
-        background-color: #5d7a8b;
+        background-color: #060911;
       }
 
       .logo {
@@ -86,39 +86,56 @@
         aspect-ratio: 1920 / 866;
         margin-bottom: 80px;
         overflow: hidden;
-        background: linear-gradient(180deg, var(--accent), #e5ecf2);
+        background-image: url("assets/novus-project/main fon.png");
+        background-size: cover;
+        background-position: center;
       }
 
-      .case-hero-phones {
+      .case-hero-logo {
         position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
+        left: 4.17%;
+        top: 31.18%;
+        width: 43.33%;
       }
 
-      .phones-scroll {
-        display: flex;
-        align-items: center;
-        width: max-content;
-        animation: phones-run 25s linear infinite;
-        will-change: transform;
+      .case-hero-tagline {
+        position: absolute;
+        left: 4.17%;
+        top: 17.44%;
+        font-size: clamp(11px, 1.8vw, 34px);
+        font-weight: 700;
+        line-height: 1.3;
+        color: #808286;
+        text-transform: uppercase;
       }
 
-      .phones-scroll img {
-        display: block;
-        flex-shrink: 0;
-        height: clamp(120px, 25.8vw, 495px);
-        width: auto;
-        margin-right: clamp(40px, 10vw, 196px);
+      .case-hero-desc {
+        position: absolute;
+        left: 15.89%;
+        top: 62.47%;
+        width: 38.18%;
+        font-family: "Inter", sans-serif;
+        font-size: clamp(6px, 1.667vw, 32px);
+        font-weight: 500;
+        line-height: 1.6;
+        color: white;
       }
 
-      @keyframes phones-run {
+      .case-hero-vector {
+        position: absolute;
+        right: 0;
+        top: 5.77%;
+        width: 51.67%;
+        pointer-events: none;
+        animation: hero-vector-spin 70s linear infinite;
+      }
+
+      @keyframes hero-vector-spin {
         from {
-          transform: translateX(0);
+          transform: rotate(0deg);
         }
         to {
-          transform: translateX(-50%);
+          transform: rotate(360deg);
         }
       }
 
@@ -314,7 +331,7 @@
         color: #474747;
       }
 
-      /* ── CAPTION / DOC EMBED ─────────────────────── */
+      /* ── CAPTION ─────────────────────────────────── */
       .img-caption {
         font-size: 16px;
         font-weight: 600;
@@ -322,42 +339,9 @@
         margin: 32px 0 0;
       }
 
-      .doc-embed {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-        padding: 12px 18px;
-        border: 1px solid #d1d1d1;
-        border-radius: 8px;
-        font-family: "Inter", sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        color: #474747;
-      }
-
-      .doc-embed svg {
-        flex-shrink: 0;
-      }
-
       /* ── PHOTO ───────────────────────────────────── */
       .img img {
         border-radius: 10px;
-      }
-
-      /* ── FIGMA EMBED ─────────────────────────────── */
-      .figma-embed {
-        margin-top: 14px;
-        border-radius: 10px;
-        overflow: hidden;
-        border: 1px solid #e1e8ed;
-      }
-
-      .figma-embed iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: block;
       }
 
       /* ── IMAGE PLACEHOLDER ───────────────────────── */
@@ -416,41 +400,32 @@
 
       /* ── DEMO BANNER ─────────────────────────────── */
       .demo-banner {
-        position: relative;
         margin: 80px 0 0;
         border-radius: 10px;
         overflow: hidden;
-        min-height: 262px;
+        height: 262px;
+        background: linear-gradient(135deg, #0a1a33, var(--accent) 150%);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 18px;
-        padding: 40px clamp(90px, 30%, 260px) 40px clamp(24px, 6.35%, 80px);
-        background: url("./assets/medixbridge/fon demo-banner.png") no-repeat
-          center / cover;
+        align-items: center;
+        gap: 20px;
+        padding: 40px;
       }
 
       .demo-banner-title {
-        font-size: clamp(16px, 1.8vw, 24px);
+        font-size: 24px;
         font-weight: 600;
         color: #fff;
-        text-align: left;
-        white-space: nowrap;
+        text-align: center;
       }
 
       .demo-banner-actions {
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
         gap: 16px;
-      }
-
-      .demo-banner-illustration {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 39.2%;
-        max-width: 494px;
-        pointer-events: none;
       }
 
       .btn-light {
@@ -689,6 +664,11 @@
           margin-bottom: 60px;
         }
 
+        .case-hero-vector {
+          width: 40%;
+          opacity: 0.6;
+        }
+
         .case-grid {
           grid-template-columns: 1fr;
           padding: 0 24px;
@@ -730,6 +710,9 @@
 
         .demo-banner {
           margin: 64px 0 0;
+          min-height: 0;
+          gap: 16px;
+          padding: 24px;
         }
 
         .next-project {
@@ -752,36 +735,6 @@
         .footer-contacts {
           align-items: flex-start;
           margin-left: 0;
-        }
-      }
-
-      /* Demo banner: stack text, buttons, and illustration once the row
-         gets too narrow for the side-by-side layout. */
-      @media (max-width: 610px) {
-        .demo-banner {
-          min-height: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          padding: 32px 24px;
-        }
-
-        .demo-banner-title {
-          font-size: 20px;
-          white-space: normal;
-          text-align: center;
-        }
-
-        .demo-banner-actions {
-          justify-content: center;
-        }
-
-        .demo-banner-illustration {
-          position: static;
-          width: 60%;
-          max-width: 260px;
         }
       }
 
@@ -823,6 +776,7 @@
 
         .demo-banner {
           margin: 48px 0 0;
+          padding: 20px;
         }
 
         .next-project {
@@ -851,451 +805,274 @@
 
     <!-- HERO -->
     <div class="case-hero">
-      <div class="case-hero-phones">
-        <div class="phones-scroll">
-          <img
-            src="assets/medixbridge/medixbrige-apps-strip.svg"
-            alt=""
-            decoding="async"
-          />
-          <img
-            src="assets/medixbridge/medixbrige-apps-strip.svg"
-            alt=""
-            decoding="async"
-          />
-        </div>
-      </div>
+      <img
+        class="case-hero-vector"
+        src="assets/novus-project/svg animate for main.svg"
+        alt=""
+      />
+      <div class="case-hero-tagline">Technical Expertise for business</div>
+      <img
+        class="case-hero-logo"
+        src="assets/novus-project/logo vector.svg"
+        alt="Novus"
+      />
+      <p class="case-hero-desc">
+        Blockchain development company at the forefront of the industry,
+        offering AI-driven process automation alongside our bespoke software
+        development services.
+      </p>
     </div>
 
     <!-- CASE GRID -->
     <main class="case-grid">
       <aside class="case-sidebar">
-        <div class="eyebrow">MEDIXBRIDGE</div>
-        <h1>Startup in Germany</h1>
-        <a
-          class="slides-link"
-          href="https://www.figma.com/design/wwCRCdSMPlTM4nVtY6NVZs/MedixBridge-Prototype-Germany-Demo?node-id=1824-49925&t=trOEozgz7YNGRpD0-1
-          "
-          target="_blank"
-        >
-          See process in Figma Slides
-          <svg class="arrow-icon" viewBox="0 0 18 18" fill="none">
-            <path
-              d="M4 14L14 4M14 4H7M14 4V11"
-              stroke="#5d7a8b"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
+        <div class="eyebrow">NOVUS TEAM</div>
+        <h1>Sales &amp; Branding Enhancement</h1>
       </aside>
 
       <div class="case-content">
         <p class="case-intro">
-          MedixBridge is a startup digital recruitment platform connecting
-          doctors, medical students, and clinics in Germany. Designed from the
-          ground up, it automates job applications, credential verification, and
-          interview scheduling, ensuring compliance with German healthcare
-          regulations while optimizing hiring efficiency.
+          The project focused on developing a high-impact sales presentation
+          designed to enhance client engagement and drive revenue growth. The
+          process involved orchestrating research, content structuring, and
+          visual execution to ensure alignment with business objectives.
         </p>
 
         <div class="case-meta">
           <div class="meta-group">
             <div class="meta-label">My Role</div>
-            <div class="meta-name">Senior Product Designer</div>
-            <div class="meta-name">(UX/UI, Research)</div>
+            <div class="meta-name">Product UI/UX Designer</div>
           </div>
           <div class="meta-group">
             <div class="meta-label">Other Participants</div>
             <div class="meta-cols">
               <div class="meta-col">
-                <div class="meta-name">CEO &amp; Founder</div>
-                <div class="meta-name">Product Manager</div>
+                <div class="meta-name">CEO</div>
               </div>
               <div class="meta-col">
-                <div class="meta-name">Product Analyst</div>
-                <div class="meta-name">Project Manager</div>
-              </div>
-              <div class="meta-col">
-                <div class="meta-name">Developers</div>
+                <div class="meta-name">Sales Managers</div>
               </div>
             </div>
           </div>
           <div class="mini-logo">
-            <img
-              src="./assets/medixbridge/logo-medixbrige.svg"
-              alt="MedixBridge"
-            />
+            <img src="assets/novus-project/logo-novus.svg" alt="Novus Team" />
           </div>
         </div>
 
+        <!-- TASK -->
         <section class="case-section">
-          <h3 style="margin-top: 0">Role &amp; Execution</h3>
-          <p>
-            Brought in at the idea stage, I led the product&rsquo;s UX/UI,
-            developed the platform architecture using CJM &amp; JTBD
-            methodologies, and orchestrated a seamless, scalable solution. I
-            worked closely with the CEO and product manager, ensuring business
-            objectives were met while optimizing user experience.
-          </p>
-
-          <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/fon 1.png" />
-          </div>
-        </section>
-
-        <!-- COMPETITIVE ANALYSIS -->
-        <section class="case-section">
-          <h2>Competitive Analysis &amp; Research</h2>
-          <p>
-            To develop a platform that stands out, we conducted in-depth
-            competitor research. The analysis revealed several key gaps in the
-            market:
-          </p>
-
-          <ul class="case-list" style="margin-top: 28px">
-            <li>
-              Competitor: Lacked real-time department availability data in
-              hospitals.
-            </li>
-            <li>
-              Competitor: The credential verification process was cumbersome and
-              required manual intervention.
-            </li>
-            <li>
-              Competitor: Did not offer an integrated interview scheduling tool.
-            </li>
-          </ul>
-
-          <h3 style="margin-top: 36px">Identified Market Gaps:</h3>
-          <ul class="case-list">
-            <li>
-              <strong>Lack of real-time department insights</strong>
-              &ndash; No competitor provided live data on department
-              availability, making it harder for candidates to make informed
-              decisions.
-            </li>
-            <li>
-              <strong>Manual verification processes</strong> &ndash; Many
-              platforms relied on manual verification, which increased the risk
-              of delays and fraud.
-            </li>
-            <li>
-              <strong>Absence of an interview scheduling system</strong>
-              &ndash; No platform allowed direct scheduling between candidates
-              and clinics, causing unnecessary delays.
-            </li>
-          </ul>
-        </section>
-
-        <!-- JTBD & HYPOTHESES -->
-        <section class="case-section">
-          <h2>JTBD &amp; Hypotheses</h2>
-          <p>
-            Following the competitive research, I defined JTBD (Jobs to Be Done)
-            hypotheses to guide the platform&rsquo;s features:
-          </p>
-
-          <p class="img-caption">miro:</p>
-          <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/JTBD & Hypotheses-fon.jpg" />
-          </div>
-
-          <!-- TASK -->
           <h2>Task</h2>
           <p>
-            It was necessary to create a concept for a platform that would
-            combine tradition and modernity, develop a personal account that
-            would simplify working with a large amount of materials and courses
-            on the site, simplify the process of searching for materials
-            according to interests and requests, as well as create an admin
-            panel for content management, which would allow adding new
-            information to the site quickly and conveniently.
+            Orchestrated the development of a sales-driven presentation, forging
+            stronger client engagement and securing higher conversion rates.
+          </p>
+          <p style="margin-top: 20px">
+            Developed a cohesive brand identity from scratch, coordinating
+            efforts across teams to surpass industry standards and strengthen
+            market positioning.
           </p>
 
           <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/tasks-fon-1.png" />
+            <img src="assets/novus-project/fon for task 1.png" />
           </div>
 
-          <ol class="case-ol" style="margin-top: 28px">
-            <li>
-              Doctors and students need a seamless way to find verified job
-              opportunities
-              <p>
-                Hypothesis: A centralized, automated job-matching system will
-                increase successful placements.
-              </p>
-            </li>
-            <li>
-              Clinics require transparency regarding candidates&rsquo;
-              credentials to reduce hiring risks
-              <p>
-                Hypothesis: An automated verification system ensures document
-                authenticity and reduces risks.
-              </p>
-            </li>
-            <li>
-              Interview scheduling should be simplified for both parties
-              <p>
-                Hypothesis: Integrating interview scheduling tools will
-                streamline communication and improve hiring efficiency.
-              </p>
-            </li>
-            <li>
-              Real-time department data is crucial for informed job decisions
-              <p>
-                Hypothesis: A smart map with real-time data on bed availability
-                and training opportunities will help job seekers make
-                better-informed decisions.
-              </p>
-            </li>
-            <li>
-              Applicants without reviews may struggle to find jobs
-              <p>
-                Hypothesis: A feedback system from previous employers will boost
-                candidates&rsquo; credibility and improve their chances of being
-                hired.
-              </p>
-            </li>
-            <li>
-              Doctors relocating between cities need assistance in transitioning
-              <p>
-                Hypothesis: The platform should facilitate relocation support to
-                make transitions smoother for doctors moving to new workplaces.
-              </p>
-            </li>
-          </ol>
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon for task 2.png" />
+          </div>
+
+          <h2>The main goal</h2>
+          <p>
+            The primary objective was to develop a high-impact sales
+            presentation and forge a strong brand identity to enhance client
+            engagement and drive revenue growth. By orchestrating a structured
+            and visually compelling sales tool, the project aimed to empower
+            sales teams, secure higher conversion rates, and showcase NOVUS
+            Team&rsquo;s value proposition with clarity and professionalism.
+          </p>
 
           <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/tasks-fon-2.png" />
+            <img src="assets/novus-project/fon for goal.png" />
           </div>
         </section>
 
-        <!-- CUSTOMER JOURNEY MAP -->
+        <!-- KEY ACHIEVEMENTS -->
         <section class="case-section">
-          <h2>Key Stages of the Customer Journey Map (CJM):</h2>
-
-          <p class="img-caption">CJM overview:</p>
-          <div class="img" style="margin-top: 14px">
-            <img
-              src="./assets/medixbridge/Key Stages of the Customer Journey Map (CJM)- fon.png"
-            />
-          </div>
-
-          <p class="img-caption">Service map:</p>
-          <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/Service map -fon.png" />
-          </div>
-
-          <p class="img-caption">Login/Signup &amp; Account Confirmation:</p>
-          <p>Optimized authentication flows for frictionless onboarding.</p>
-          <div class="img" style="margin-top: 14px">
-            <img
-              src="./assets/medixbridge/Signup & Account Confirmation- fon.png"
-            />
-          </div>
-
-          <p class="img-caption">Doctor Profile &amp; Resumes:</p>
-          <p>Created structured CV templates and credential verification.</p>
-          <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/Doctor Profile & Resumes- fon.png" />
-          </div>
-
-          <p class="img-caption">Job Applications &amp; Reviews:</p>
+          <h2>Key Achievements</h2>
           <p>
-            Integrated a centralized dashboard for tracking applications and
-            receiving feedback.
+            As a Product UI/UX Designer, I orchestrated and developed a
+            strategically refined presentation for sales managers and clients,
+            aimed at strengthening the brand and increasing sales.
           </p>
 
-          <p class="img-caption">Clinic Management Dashboard:</p>
-          <p>
-            Built tools for managing applications, reviewing doctor profiles,
-            and tracking departments.
-          </p>
+          <ul class="case-list">
+            <li>
+              Orchestrated the presentation creation process, aligning business
+              goals with compelling visuals.
+            </li>
+            <li>
+              Developed and built a brand design from scratch, enhancing NOVUS
+              Team&rsquo;s visual identity.
+            </li>
+            <li>
+              Coordinated collaboration with sales managers, the CEO, and HR to
+              tailor content to the company&rsquo;s needs.
+            </li>
+            <li>
+              Pioneered the improvement of client-facing materials, leading to
+              higher engagement.
+            </li>
+          </ul>
+
           <div class="img" style="margin-top: 14px">
-            <img
-              src="./assets/medixbridge/Clinic Management Dashboard – Built tools for managing applications, reviewing doctor profiles, and tracking departments. - fon.png"
-            />
+            <img src="assets/novus-project/fon for kay 1.png" />
           </div>
 
-          <p class="img-caption">Department and Job Information:</p>
-          <p>
-            Developed a feature with real-time department data and available
-            opportunities, empowering candidates to make well-informed
-            decisions.
-          </p>
-
-          <p class="img-caption">Catalog &amp; Department Insights:</p>
-          <p>
-            Designed real-time department tracking for informed job searches.
-          </p>
-
-          <p class="img-caption">Automated Verification &amp; Scheduling:</p>
-          <p>Streamlined credential validation and interview coordination.</p>
-
-          <p class="img-caption">Interview Scheduling:</p>
-          <p>
-            Implemented an efficient, integrated scheduling tool to facilitate
-            direct communication between candidates and clinics, removing
-            intermediaries.
-          </p>
           <div class="img" style="margin-top: 14px">
-            <img
-              src="./assets/medixbridge/Key Stages of the Customer Journey Map (CJM)- fon- 2.png"
-            />
+            <img src="assets/novus-project/fon for kay 2.png" />
           </div>
         </section>
 
-        <!-- KEY CHALLENGES & SOLUTIONS -->
+        <!-- RESULTS & STRATEGIC IMPACT -->
         <section class="case-section">
-          <h2>Key Challenges &amp; Solutions</h2>
-          <p>
-            After mapping out the user journey, we faced several challenges,
-            which I addressed through tailored solutions:
-          </p>
+          <h2>Results &amp; Strategic Impact</h2>
+          <h3 style="margin-top: 36px">
+            Impact-Driven Design for Business Growth
+          </h3>
+
           <ul class="case-list">
-            <li>Inefficient job search and credential verification:</li>
-            <li>Limited access to department data</li>
-            <li>Cumbersome interview scheduling</li>
+            <li>
+              🏆 Showcased a structured and visually compelling presentation,
+              earning high praise from the CEO for strengthening brand
+              positioning and market perception.
+            </li>
+            <li>
+              🎯 Forged a structured content strategy, empowering HR to
+              effectively market the company, enhance employer branding, and
+              streamline onboarding to attract and retain top talent.
+            </li>
+            <li>
+              📈 Forged a more effective sales narrative, empowering Sales
+              managers with clearer communication tools to secure client
+              interest and drive engagement.
+            </li>
+            <li>
+              🚀 A strategic and well-executed design drives brand growth and
+              accelerates sales performance.
+            </li>
           </ul>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon for results.png" />
+          </div>
         </section>
 
-        <!-- CORE ARCHITECTURE & RESULTS -->
+        <!-- PRODUCTS -->
         <section class="case-section">
-          <h2>Core Architecture &amp; Results</h2>
-          <p>
-            I structured the platform with a scalable, automated system to
-            enhance efficiency and transparency.
-          </p>
+          <h2>Products</h2>
 
-          <h3 style="margin-top: 36px">Key Platform Features:</h3>
-          <ul class="case-list">
-            <li>
-              🔹 Doctor Dashboard &ndash; Profile setup, CV management,
-              applications, reviews.
-            </li>
-            <li>
-              🔹 Clinic Dashboard &ndash; Real-time department tracking,
-              verified CVs with an option to schedule an initial online
-              interview before relocation.
-            </li>
-            <li>
-              🔹 Automated Verification &ndash; Secure document authentication,
-              reducing fraudulent applications.
-            </li>
-          </ul>
-
-          <h3 style="margin-top: 36px">Results &amp; Impact:</h3>
-
-          <h3>Efficiency &amp; Automation</h3>
-          <ul class="case-list">
-            <li>
-              ✅ Optimized hiring workflow &ndash; Streamlined job search,
-              application, and verification, reducing hiring time.
-            </li>
-            <li>
-              ✅ Seamless credential validation &ndash; Automated verification
-              eliminated manual checks, reducing clinic workload.
-            </li>
-            <li>
-              ✅ Frictionless onboarding &ndash; Simplified signup and profile
-              setup improved adoption rate.
-            </li>
-          </ul>
-
-          <h3 style="margin-top: 36px">Trust &amp; Transparency</h3>
-          <ul class="case-list">
-            <li>
-              ✅ Verified hiring ecosystem &ndash; Secure credential
-              authentication increased trust between clinics and candidates.
-            </li>
-            <li>
-              ✅ Data-driven decision making &ndash; Real-time department
-              insights helped clinics make informed hiring choices.
-            </li>
-          </ul>
           <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/fon - Results & Impact_.png" />
+            <img src="assets/novus-project/fon products 1.png" />
           </div>
 
-          <h3 style="margin-top: 36px">User Engagement &amp; Conversion</h3>
-          <ul class="case-list">
-            <li>
-              ✅ Intuitive UX/UI framework &ndash; Clean, structured design
-              improved navigation and usability.
-            </li>
-            <li>
-              ✅ Enhanced user retention &ndash; Integrated feedback system
-              strengthened credibility and engagement.
-            </li>
-            <li>
-              ✅ Smart job-matching &ndash; Personalized recommendations
-              increased successful placements.
-            </li>
-          </ul>
           <div class="img" style="margin-top: 14px">
-            <img
-              src="./assets/medixbridge/User Engagement & Conversion- fon.png"
-            />
+            <img src="assets/novus-project/fon products 2.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 3.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 4.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 5.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 6.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 7.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 8.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 9.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 10.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 11.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 12.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 13.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 14.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 15.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 16.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 17.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 18.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 19.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 20.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 21.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 22.png" />
+          </div>
+
+          <div class="img" style="margin-top: 14px">
+            <img src="assets/novus-project/fon products 23.png" />
           </div>
         </section>
-
-        <!-- DEMO BANNER -->
-        <div class="demo-banner">
-          <div class="demo-banner-title">
-            Details can be viewed at the links below
-          </div>
-          <div class="demo-banner-actions">
-            <a
-              class="btn-light"
-              href="https://www.figma.com/design/wwCRCdSMPlTM4nVtY6NVZs/MedixBridge-Prototype-Germany-Demo?node-id=1824-49925&p=f&t=ldG9LFjHcEK1vBA4-0"
-              target="_blank"
-              >View Figma</a
-            >
-            <a
-              class="btn-light"
-              href="https://miro.com/welcomeonboard/L3NUYy8vTjcrcnlXYUlJVUYwa09IQVpJVWZSWVVRSWFYSE4vd3lqZ1ViNXBjYjluaFRCWk9DU3ViRmFXUkIyRmdDT2pDbWFLOW5tTGtkUTdLNGlibVNqVDRubmhkR2hvVTBRczhDMmdaN1kyRUE1d1k3d1J2TDQvSGNpMWtvQlFBd044SHFHaVlWYWk0d3NxeHNmeG9BPT0hdjE=?share_link_id=854454930866"
-              target="_blank"
-              >View Miro</a
-            >
-          </div>
-          <img
-            class="demo-banner-illustration"
-            src="./assets/medixbridge/banner fon-svg islutration.svg"
-            alt=""
-          />
-        </div>
-
-        <!-- CLOSING -->
-        <div class="case-closing">
-          <p>
-            <strong>
-              This project was a medical startup, and I played a key role in
-              developing MedixBridge from the ground up, transforming the
-              CEO&rsquo;s idea into a fully functional product tailored for the
-              German market.</strong
-            >
-          </p>
-          <p>
-            As a Product UI/UX Designer, I am committed to delivering impactful
-            and user-centric solutions. This project reflects my ability to
-            design and structure complex platforms while ensuring seamless user
-            experiences. I am always open to new professional opportunities and
-            collaborations.
-          </p>
-        </div>
 
         <!-- NEXT PROJECT -->
-        <a class="next-project" href="project-novus.html">
+        <a class="next-project" href="project-nvidia.html">
           <div>
             <div class="eyebrow">Next project</div>
-            <h3>Novus Team: Sales &amp; Branding Enhancement</h3>
+            <h3>NVIDIA GeForce NOW, F.A.Q. &amp; support</h3>
           </div>
           <img
             class="next-project-thumb"
-            src="assets/medixbridge/next project-foto.png"
-            alt="Novus Team preview"
+            src="assets/novus-project/fon next project.png"
+            alt="NVIDIA GeForce NOW preview"
           />
         </a>
 
@@ -1385,7 +1162,7 @@
       <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
         <path
           d="M4 14L14 4M14 4H7M14 4V11"
-          stroke="#5d7a8b"
+          stroke="#0b81f4"
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
