@@ -332,7 +332,8 @@
       .about-content {
         display: flex;
         flex-direction: column;
-        gap: 36px;
+        gap: 24px;
+        min-width: 0;
       }
 
       .about-content p {
@@ -340,6 +341,63 @@
         font-weight: 600;
         color: #0e1b29;
         line-height: 1.55;
+      }
+
+      /* ── SKILLS MARQUEE ──────────────────────────── */
+      .skills-marquee {
+        margin-top: auto;
+        overflow: hidden;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        -webkit-mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 5%,
+          #000 95%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          90deg,
+          transparent,
+          #000 5%,
+          #000 95%,
+          transparent
+        );
+      }
+
+      .skills-marquee-track {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        width: max-content;
+        animation: skills-marquee-scroll 28s linear infinite;
+        will-change: transform;
+      }
+
+      .skill-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 24px;
+        border: 1px solid #0e1b29;
+        border-radius: 80px;
+        font-family: "Martel", serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #474747;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      @keyframes skills-marquee-scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
       }
 
       /* ── FOOTER ──────────────────────────────────── */
@@ -481,6 +539,12 @@
           font-size: 20px;
         }
 
+        .skill-chip {
+          height: 40px;
+          padding: 0 20px;
+          font-size: 15px;
+        }
+
         footer {
           padding: 40px 24px;
         }
@@ -508,6 +572,16 @@
 
         .about-content p {
           font-size: 18px;
+        }
+
+        .skill-chip {
+          height: 36px;
+          padding: 0 16px;
+          font-size: 14px;
+        }
+
+        .skills-marquee-track {
+          gap: 16px;
         }
       }
 
@@ -792,7 +866,27 @@
             closely with engineers, PMs, and stakeholders to turn direction into
             measurable results.
           </p>
-          <p>Thanks for stopping by :)</p>
+
+          <div class="skills-marquee">
+            <div class="skills-marquee-track">
+              <span class="skill-chip">Product Strategy</span>
+              <span class="skill-chip">UX Research</span>
+              <span class="skill-chip">Prototyping</span>
+              <span class="skill-chip">A/B Testing</span>
+              <span class="skill-chip">Data Analytics</span>
+              <span class="skill-chip">Design Systems</span>
+              <span class="skill-chip">FinTech</span>
+              <span class="skill-chip">AI integration</span>
+              <span class="skill-chip" aria-hidden="true">Product Strategy</span>
+              <span class="skill-chip" aria-hidden="true">UX Research</span>
+              <span class="skill-chip" aria-hidden="true">Prototyping</span>
+              <span class="skill-chip" aria-hidden="true">A/B Testing</span>
+              <span class="skill-chip" aria-hidden="true">Data Analytics</span>
+              <span class="skill-chip" aria-hidden="true">Design Systems</span>
+              <span class="skill-chip" aria-hidden="true">FinTech</span>
+              <span class="skill-chip" aria-hidden="true">AI integration</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
