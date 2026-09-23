@@ -218,6 +218,13 @@
       }
 
       /* ── RIGHT COLUMN ────────────────────────────── */
+      /* Only the active project's media ever lives in #proj-visual (see
+         the renderProject() logic below); every mounted element is
+         position:absolute, so on desktop the box relies on the grid's
+         default row-stretch to reach the full row height (flush with the
+         left column top and bottom). Mobile has no row to stretch
+         against, so it falls back to a fixed aspect-ratio (see the
+         1600px media query). */
       .proj-visual {
         grid-area: image;
         position: relative;
@@ -226,24 +233,24 @@
         background: linear-gradient(to bottom, #0e1a29, #9da3a7);
       }
 
-      .proj-visual > video,
-      .proj-visual > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .proj-visual > img {
+      .proj-media {
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
-        will-change: opacity;
+        /* will-change is applied/removed in JS only for the pair of
+           elements actually mid-crossfade (see renderProject()) — with
+           every visited project kept in the DOM (see the pool below),
+           leaving this on permanently would promote every cached
+           project's media to its own persistent GPU layer forever,
+           instead of just the ~300ms it's actually needed. */
       }
 
-      .proj-visual > img.active {
+      .proj-media.active {
         opacity: 1;
       }
 
@@ -268,6 +275,10 @@
         width: max-content;
         animation: phones-run 22s linear infinite;
         will-change: transform;
+      }
+
+      .proj-overlay:not(.active) .phones-scroll {
+        animation-play-state: paused;
       }
 
       .phones-scroll img {
@@ -483,7 +494,7 @@
       }
 
       /* ── RESPONSIVE ──────────────────────────────── */
-      @media (max-width: 1050px) {
+      @media (max-width: 1600px) {
         nav {
           display: flex;
           flex-wrap: wrap;
@@ -515,10 +526,6 @@
           margin-top: 24px;
           aspect-ratio: 640 / 360;
         }
-        .proj-visual.is-banking {
-          aspect-ratio: auto;
-          height: 560px;
-        }
         .about-grid {
           padding: 100px 24px 40px;
         }
@@ -547,6 +554,13 @@
 
         footer {
           padding: 40px 24px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .proj-visual.is-banking {
+          aspect-ratio: auto;
+          height: 560px;
         }
       }
 
@@ -752,7 +766,9 @@
                   make informed job decisions
                 </li>
               </ul>
-              <a href="project-medixbridge.html" class="btn-view">View project</a>
+              <a href="project-medixbridge.html" class="btn-view"
+                >View project</a
+              >
             </div>
           </div>
         </div>
@@ -802,47 +818,10 @@
         <hr class="div" />
       </div>
 
-      <!-- Project Image — same height as project list -->
-      <div class="proj-visual" id="proj-visual">
-        <video width="640" height="360" autoplay muted playsinline loop>
-          <source src="video.mov" type="video/quicktime" />
-          <source src="video.mov" type="video/mp4" />
-
-          Your browser does not support the video tag.
-        </video>
-        <img
-          src="assets/projects/bank-project-main.jpg"
-          alt="Startup Invest Banking"
-          data-project="1"
-          decoding="async"
-        />
-        <div class="proj-overlay" data-project="1">
-          <div class="phones-scroll">
-            <img
-              src="assets/invest-bank/phones-small.svg"
-              alt=""
-              decoding="async"
-            />
-            <img
-              src="assets/invest-bank/phones-small.svg"
-              alt=""
-              decoding="async"
-            />
-          </div>
-        </div>
-        <img
-          src="assets/projects/mb-main-project.jpg"
-          alt="MedixBridge"
-          data-project="2"
-          decoding="async"
-        />
-        <img
-          src="assets/projects/novus-main-project.jpg"
-          alt="Novus Team"
-          decoding="async"
-          data-project="3"
-        />
-      </div>
+      <!-- Project Image — same height as project list. Populated by
+           renderProject() in the script below: only the active project's
+           media is ever mounted here. -->
+      <div class="proj-visual" id="proj-visual"></div>
     </div>
 
     <!-- ABOUT -->
@@ -877,7 +856,9 @@
               <span class="skill-chip">Design Systems</span>
               <span class="skill-chip">FinTech</span>
               <span class="skill-chip">AI integration</span>
-              <span class="skill-chip" aria-hidden="true">Product Strategy</span>
+              <span class="skill-chip" aria-hidden="true"
+                >Product Strategy</span
+              >
               <span class="skill-chip" aria-hidden="true">UX Research</span>
               <span class="skill-chip" aria-hidden="true">Prototyping</span>
               <span class="skill-chip" aria-hidden="true">A/B Testing</span>
@@ -969,44 +950,203 @@
     </footer>
 
     <script>
+      // Each project's visual, as data rather than permanent markup.
+      // A project's element is built once, the first time it's selected
+      // (so nothing is fetched/decoded until it's actually needed), then
+      // kept — paused and hidden — instead of being torn down and rebuilt
+      // on every switch. Switching to a project you've already visited is
+      // then just an opacity toggle + video resume on an element that's
+      // already fully decoded, not a fresh fetch/decode: no re-triggered
+      // network request, no video re-initialized from scratch, and no
+      // window where a half-loaded element is mid-transition — which is
+      // what a create/destroy-per-switch approach can't avoid.
+      var PROJECTS = [
+        {
+          type: "video",
+          sources: [
+            { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/quicktime" },
+            { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/mp4" },
+          ],
+          fit: "cover",
+          background: "#000",
+        },
+        {
+          type: "image",
+          src: "assets/projects/bank-project-main.jpg",
+          alt: "Startup Invest Banking",
+          fit: "cover",
+          overlay: [
+            "assets/invest-bank/phones-small.svg",
+            "assets/invest-bank/phones-small.svg",
+          ],
+        },
+        {
+          type: "image",
+          src: "assets/projects/fon-MBnkar.jpg",
+          alt: "MedixBridge",
+          fit: "cover",
+        },
+        {
+          type: "video",
+          sources: [{ src: "assets/projects/Novus-Brand-Animation.mp4", type: "video/mp4" }],
+          fit: "cover",
+          background:
+            'url("assets/projects/fon-novus.jpg") center / cover no-repeat, #050810',
+        },
+      ];
+
+      // These are static for the page's lifetime, so look them up once
+      // instead of re-querying the DOM on every switch/resize.
+      var visualEl = document.getElementById("proj-visual");
+      var mainSplitEl = document.querySelector(".main-split");
+      var projectEls = document.querySelectorAll(".project");
+
+      // idx -> { media, overlay } for every project that's been mounted
+      // at least once. Populated lazily by getEntry().
+      var pool = {};
+      var activeIdx = null;
+
       var currentProjectIdx = 0;
-      var mobileVisualQuery = window.matchMedia("(max-width: 1050px)");
+      var mobileVisualQuery = window.matchMedia("(max-width: 1600px)");
 
       function placeVisual() {
-        var visual = document.getElementById("proj-visual");
-        var projects = document.querySelectorAll(".project");
         if (mobileVisualQuery.matches) {
           var activeDetail =
-            projects[currentProjectIdx].querySelector(".proj-detail-inner");
-          if (visual.parentElement !== activeDetail) {
-            activeDetail.appendChild(visual);
+            projectEls[currentProjectIdx].querySelector(".proj-detail-inner");
+          if (visualEl.parentElement !== activeDetail) {
+            activeDetail.appendChild(visualEl);
           }
+        } else if (visualEl.parentElement !== mainSplitEl) {
+          mainSplitEl.appendChild(visualEl);
+        }
+      }
+
+      function createMedia(config) {
+        var el;
+        if (config.type === "video") {
+          el = document.createElement("video");
+          el.autoplay = true;
+          el.muted = true;
+          el.loop = true;
+          el.playsInline = true;
+          config.sources.forEach(function (source) {
+            var sourceEl = document.createElement("source");
+            sourceEl.src = source.src;
+            sourceEl.type = source.type;
+            el.appendChild(sourceEl);
+          });
         } else {
-          var mainSplit = document.querySelector(".main-split");
-          if (visual.parentElement !== mainSplit) {
-            mainSplit.appendChild(visual);
+          el = document.createElement("img");
+          el.src = config.src;
+          el.alt = config.alt || "";
+          el.decoding = "async";
+        }
+        el.className = "proj-media";
+        el.style.objectFit = config.fit;
+        if (config.background) {
+          el.style.background = config.background;
+        }
+        return el;
+      }
+
+      function createOverlay(config) {
+        if (!config.overlay) return null;
+        var overlay = document.createElement("div");
+        overlay.className = "proj-overlay";
+        var track = document.createElement("div");
+        track.className = "phones-scroll";
+        config.overlay.forEach(function (src) {
+          var img = document.createElement("img");
+          img.src = src;
+          img.alt = "";
+          img.decoding = "async";
+          track.appendChild(img);
+        });
+        overlay.appendChild(track);
+        return overlay;
+      }
+
+      function getEntry(idx) {
+        if (pool[idx]) return pool[idx];
+        var config = PROJECTS[idx];
+        var media = createMedia(config);
+        var overlay = createOverlay(config);
+        visualEl.appendChild(media);
+        if (overlay) visualEl.appendChild(overlay);
+        var entry = { media: media, overlay: overlay };
+        pool[idx] = entry;
+        return entry;
+      }
+
+      var CROSSFADE_MS = 300;
+      var WILL_CHANGE_CLEAR_MS = CROSSFADE_MS + 50;
+
+      function setPromoted(entry, on) {
+        entry.media.style.willChange = on ? "opacity" : "";
+        if (entry.overlay) entry.overlay.style.willChange = on ? "opacity" : "";
+      }
+
+      function renderProject(idx, immediate) {
+        var wasCached = !!pool[idx];
+        var entry = getEntry(idx);
+
+        if (entry.media.tagName === "VIDEO") {
+          entry.media.play().catch(function () {});
+        }
+
+        if (immediate) {
+          entry.media.classList.add("active");
+          if (entry.overlay) entry.overlay.classList.add("active");
+        } else {
+          if (!wasCached) {
+            // A freshly-appended element's opacity:0 hasn't been committed
+            // to the render tree yet, so flipping to .active in the same
+            // tick wouldn't transition — force that commit first. Not
+            // needed for an already-cached element: its opacity:0 was
+            // already committed whenever it was last deactivated, so it
+            // transitions correctly with no extra step.
+            void entry.media.offsetWidth;
+          }
+          // GPU-promote only the pair actually crossfading, only for the
+          // ~300ms it takes — not left on indefinitely (see .proj-media).
+          setPromoted(entry, true);
+          window.setTimeout(function () {
+            setPromoted(entry, false);
+          }, WILL_CHANGE_CLEAR_MS);
+          entry.media.classList.add("active");
+          if (entry.overlay) entry.overlay.classList.add("active");
+        }
+
+        if (activeIdx !== null && activeIdx !== idx) {
+          var prev = pool[activeIdx];
+          if (!immediate) {
+            setPromoted(prev, true);
+            window.setTimeout(function () {
+              setPromoted(prev, false);
+            }, WILL_CHANGE_CLEAR_MS);
+          }
+          prev.media.classList.remove("active");
+          if (prev.overlay) prev.overlay.classList.remove("active");
+          if (prev.media.tagName === "VIDEO") {
+            prev.media.pause();
           }
         }
+        activeIdx = idx;
       }
 
       function selectProject(idx) {
         currentProjectIdx = idx;
-        document.querySelectorAll(".project").forEach(function (el, i) {
+        projectEls.forEach(function (el, i) {
           el.classList.toggle("active", i === idx);
         });
-        document
-          .querySelectorAll(".proj-visual [data-project]")
-          .forEach(function (el) {
-            el.classList.toggle("active", Number(el.dataset.project) === idx);
-          });
-        document
-          .getElementById("proj-visual")
-          .classList.toggle("is-banking", idx === 1);
+        visualEl.classList.toggle("is-banking", idx === 1);
         placeVisual();
+        renderProject(idx);
       }
 
       mobileVisualQuery.addEventListener("change", placeVisual);
       placeVisual();
+      renderProject(currentProjectIdx, true);
 
       function updateTime() {
         const options = {
