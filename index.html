@@ -224,7 +224,7 @@
          default row-stretch to reach the full row height (flush with the
          left column top and bottom). Mobile has no row to stretch
          against, so it falls back to a fixed aspect-ratio (see the
-         1600px media query). */
+         1480px media query). */
       .proj-visual {
         grid-area: image;
         position: relative;
@@ -233,6 +233,19 @@
         background: linear-gradient(to bottom, #0e1a29, #9da3a7);
       }
 
+      /* The switch between projects is entirely CSS-timed, no JS
+         scheduling involved: leaving .active fades out immediately
+         (rule below, no delay); gaining .active waits out that same
+         0.15s before it starts fading in (see .active rules), so the
+         two are never simultaneously visible — no JS setTimeout/token
+         bookkeeping needed to sequence it, and CSS handles an
+         interrupted/rapid switch correctly on its own (a transition
+         always animates from its current value, so toggling classes
+         again mid-transition just naturally redirects it — nothing
+         extra to guard against). No will-change hint either: a
+         plain `transition: opacity` like this is exactly the case
+         browsers already auto-promote to its own layer for the
+         duration of the transition and drop right after, without help. */
       .proj-media {
         position: absolute;
         inset: 0;
@@ -240,18 +253,13 @@
         height: 100%;
         display: block;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.15s ease;
         pointer-events: none;
-        /* will-change is applied/removed in JS only for the pair of
-           elements actually mid-crossfade (see renderProject()) — with
-           every visited project kept in the DOM (see the pool below),
-           leaving this on permanently would promote every cached
-           project's media to its own persistent GPU layer forever,
-           instead of just the ~300ms it's actually needed. */
       }
 
       .proj-media.active {
         opacity: 1;
+        transition: opacity 0.15s ease 0.15s;
       }
 
       .proj-overlay {
@@ -261,12 +269,13 @@
         display: flex;
         align-items: center;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity 0.15s ease;
         pointer-events: none;
       }
 
       .proj-overlay.active {
         opacity: 1;
+        transition: opacity 0.15s ease 0.15s;
       }
 
       .phones-scroll {
@@ -494,7 +503,7 @@
       }
 
       /* ── RESPONSIVE ──────────────────────────────── */
-      @media (max-width: 1600px) {
+      @media (max-width: 1480px) {
         nav {
           display: flex;
           flex-wrap: wrap;
@@ -967,7 +976,7 @@
             { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/quicktime" },
             { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/mp4" },
           ],
-          fit: "cover",
+          fit: "contain",
           background: "#000",
         },
         {
@@ -982,14 +991,18 @@
         },
         {
           type: "image",
-          src: "assets/projects/fon-MBnkar.jpg",
+          src: "assets/projects/fon-MB.jpg",
           alt: "MedixBridge",
           fit: "cover",
+          overlay: [
+            "assets/projects/medixbrige-apps-stripmain.svg",
+            "assets/projects/medixbrige-apps-stripmain.svg",
+          ],
         },
         {
           type: "video",
           sources: [{ src: "assets/projects/Novus-Brand-Animation.mp4", type: "video/mp4" }],
-          fit: "cover",
+          fit: "contain",
           background:
             'url("assets/projects/fon-novus.jpg") center / cover no-repeat, #050810',
         },
@@ -1007,7 +1020,7 @@
       var activeIdx = null;
 
       var currentProjectIdx = 0;
-      var mobileVisualQuery = window.matchMedia("(max-width: 1600px)");
+      var mobileVisualQuery = window.matchMedia("(max-width: 1480px)");
 
       function placeVisual() {
         if (mobileVisualQuery.matches) {
@@ -1078,64 +1091,89 @@
         return entry;
       }
 
-      var CROSSFADE_MS = 300;
-      var WILL_CHANGE_CLEAR_MS = CROSSFADE_MS + 50;
-
-      function setPromoted(entry, on) {
-        entry.media.style.willChange = on ? "opacity" : "";
-        if (entry.overlay) entry.overlay.style.willChange = on ? "opacity" : "";
+      function restartContent(entry) {
+        if (entry.media.tagName === "VIDEO") {
+          entry.media.currentTime = 0;
+          entry.media.play().catch(function () {});
+        }
+        if (entry.overlay) {
+          var track = entry.overlay.querySelector(".phones-scroll");
+          if (track) {
+            // Restart the marquee's CSS animation from 0% instead of
+            // resuming wherever it was paused: set to "none", force a
+            // reflow so the browser commits that, then clear it so the
+            // normal animation (still just paused, per the CSS rule)
+            // starts fresh once .active is added below.
+            track.style.animation = "none";
+            void track.offsetWidth;
+            track.style.animation = "";
+          }
+        }
       }
 
+      // The old/new crossfade timing (no simultaneous overlap) is entirely
+      // owned by CSS now (see .proj-media.active / .proj-overlay.active) —
+      // this just has to toggle both classes in the same tick and CSS
+      // takes care of the rest, including correctly redirecting an
+      // in-progress transition if a switch is interrupted by another one,
+      // so there's no JS timer or "is this still the latest request" state
+      // to maintain here at all.
       function renderProject(idx, immediate) {
         var wasCached = !!pool[idx];
         var entry = getEntry(idx);
+        var prevIdx = activeIdx;
+        activeIdx = idx;
 
-        if (entry.media.tagName === "VIDEO") {
-          entry.media.play().catch(function () {});
+        restartContent(entry);
+
+        if (!immediate && !wasCached) {
+          // A freshly-appended element's opacity:0 hasn't been committed
+          // to the render tree yet, so flipping to .active in the same
+          // tick wouldn't transition — force that commit first. Not
+          // needed for an already-cached element: its opacity:0 was
+          // already committed whenever it was last deactivated, so it
+          // transitions correctly with no extra step.
+          void entry.media.offsetWidth;
         }
 
-        if (immediate) {
-          entry.media.classList.add("active");
-          if (entry.overlay) entry.overlay.classList.add("active");
-        } else {
-          if (!wasCached) {
-            // A freshly-appended element's opacity:0 hasn't been committed
-            // to the render tree yet, so flipping to .active in the same
-            // tick wouldn't transition — force that commit first. Not
-            // needed for an already-cached element: its opacity:0 was
-            // already committed whenever it was last deactivated, so it
-            // transitions correctly with no extra step.
-            void entry.media.offsetWidth;
-          }
-          // GPU-promote only the pair actually crossfading, only for the
-          // ~300ms it takes — not left on indefinitely (see .proj-media).
-          setPromoted(entry, true);
-          window.setTimeout(function () {
-            setPromoted(entry, false);
-          }, WILL_CHANGE_CLEAR_MS);
-          entry.media.classList.add("active");
-          if (entry.overlay) entry.overlay.classList.add("active");
-        }
+        entry.media.classList.add("active");
+        if (entry.overlay) entry.overlay.classList.add("active");
 
-        if (activeIdx !== null && activeIdx !== idx) {
-          var prev = pool[activeIdx];
-          if (!immediate) {
-            setPromoted(prev, true);
-            window.setTimeout(function () {
-              setPromoted(prev, false);
-            }, WILL_CHANGE_CLEAR_MS);
-          }
+        if (prevIdx !== null && prevIdx !== idx) {
+          var prev = pool[prevIdx];
           prev.media.classList.remove("active");
           if (prev.overlay) prev.overlay.classList.remove("active");
           if (prev.media.tagName === "VIDEO") {
             prev.media.pause();
           }
         }
-        activeIdx = idx;
       }
+
+      // .proj-detail's grid-template-rows transition (index.html:132-136,
+      // 0.45s) reflows the whole .main-split row on every frame while it
+      // runs — unlike opacity, grid track sizing isn't compositor-only.
+      // .proj-visual normally tracks that row's live height via grid
+      // stretch (see index.html:220-227), so without this it would also
+      // get resized and its (often multi-MB) video/image repainted on
+      // every one of those frames. Desktop only: on mobile .proj-visual
+      // is sized by aspect-ratio off its own width, not the row, so it's
+      // already unaffected by the accordion reflow.
+      var ACCORDION_MS = 480;
+      var unfreezeVisualHeightTimer = null;
 
       function selectProject(idx) {
         currentProjectIdx = idx;
+
+        if (!mobileVisualQuery.matches) {
+          if (unfreezeVisualHeightTimer) {
+            window.clearTimeout(unfreezeVisualHeightTimer);
+          }
+          visualEl.style.height = visualEl.getBoundingClientRect().height + "px";
+          unfreezeVisualHeightTimer = window.setTimeout(function () {
+            visualEl.style.height = "";
+          }, ACCORDION_MS);
+        }
+
         projectEls.forEach(function (el, i) {
           el.classList.toggle("active", i === idx);
         });
@@ -1147,6 +1185,29 @@
       mobileVisualQuery.addEventListener("change", placeVisual);
       placeVisual();
       renderProject(currentProjectIdx, true);
+
+      // Warm a project's video/image the moment the pointer enters its
+      // list row — a real intent signal, one asset at a time — instead of
+      // fetching everything speculatively at load (tried that: it made
+      // things worse by competing for bandwidth with the default video
+      // that's already actively downloading). getEntry() is the exact
+      // same lazy-create/cache path a click uses, so by the time the
+      // click actually lands the element already exists and its network
+      // fetch has had a head start; pause() undoes the autoplay it
+      // otherwise starts, so a hover that never turns into a click
+      // doesn't leave a hidden video decoding in the background.
+      projectEls.forEach(function (el, i) {
+        el.addEventListener(
+          "mouseenter",
+          function () {
+            var entry = getEntry(i);
+            if (i !== activeIdx && entry.media.tagName === "VIDEO") {
+              entry.media.pause();
+            }
+          },
+          { once: true }
+        );
+      });
 
       function updateTime() {
         const options = {

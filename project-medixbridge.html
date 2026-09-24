@@ -345,6 +345,12 @@
         border-radius: 10px;
       }
 
+      .img video {
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+      }
+
       /* ── FIGMA EMBED ─────────────────────────────── */
       .figma-embed {
         margin-top: 14px;
@@ -680,7 +686,7 @@
 
       /* Tablet / small laptop: the two-column grid gets too cramped
          before this point, so drop to a single stacked column early. */
-      @media (max-width: 1600px) {
+      @media (max-width: 1480px) {
         nav {
           padding: 24px;
         }
@@ -931,7 +937,7 @@
         </div>
 
         <section class="case-section">
-          <h3 style="margin-top: 0">Role &amp; Execution</h3>
+          <h2 style="margin-top: 0">Role &amp; Execution</h2>
           <p>
             Brought in at the idea stage, I led the product&rsquo;s UX/UI,
             developed the platform architecture using CJM &amp; JTBD
@@ -941,7 +947,13 @@
           </p>
 
           <div class="img" style="margin-top: 14px">
-            <img src="./assets/medixbridge/fon 1.png" />
+            <video
+              src="./assets/medixbridge/video-MB.mov"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
           </div>
         </section>
 
