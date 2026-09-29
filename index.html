@@ -568,7 +568,7 @@
       }
 
       @media (max-width: 600px) {
-        .proj-visual.is-banking {
+        .proj-visual.has-phones {
           aspect-ratio: auto;
           height: 560px;
         }
@@ -974,7 +974,10 @@
         {
           type: "video",
           sources: [
-            { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/quicktime" },
+            {
+              src: "assets/projects/NVIDIA/GFN16-9.mov",
+              type: "video/quicktime",
+            },
             { src: "assets/projects/NVIDIA/GFN16-9.mov", type: "video/mp4" },
           ],
           fit: "contain",
@@ -982,7 +985,7 @@
         },
         {
           type: "image",
-          src: "assets/projects/bank-project-main.jpg",
+          src: "assets/projects/bank-project-main0.jpg",
           alt: "Startup Invest Banking",
           fit: "cover",
           overlay: [
@@ -1002,7 +1005,12 @@
         },
         {
           type: "video",
-          sources: [{ src: "assets/projects/Novus-Brand-Animation.mp4", type: "video/mp4" }],
+          sources: [
+            {
+              src: "assets/projects/Novus-Brand-Animation.mp4",
+              type: "video/mp4",
+            },
+          ],
           fit: "contain",
           background:
             'url("assets/projects/fon-novus.jpg") center / cover no-repeat, #050810',
@@ -1169,7 +1177,8 @@
           if (unfreezeVisualHeightTimer) {
             window.clearTimeout(unfreezeVisualHeightTimer);
           }
-          visualEl.style.height = visualEl.getBoundingClientRect().height + "px";
+          visualEl.style.height =
+            visualEl.getBoundingClientRect().height + "px";
           unfreezeVisualHeightTimer = window.setTimeout(function () {
             visualEl.style.height = "";
           }, ACCORDION_MS);
@@ -1178,7 +1187,7 @@
         projectEls.forEach(function (el, i) {
           el.classList.toggle("active", i === idx);
         });
-        visualEl.classList.toggle("is-banking", idx === 1);
+        visualEl.classList.toggle("has-phones", !!PROJECTS[idx].overlay);
         placeVisual();
         renderProject(idx);
       }
@@ -1206,7 +1215,7 @@
               entry.media.pause();
             }
           },
-          { once: true }
+          { once: true },
         );
       });
 
